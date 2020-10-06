@@ -1,0 +1,47 @@
+<androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/padding_s"
+    card_view:cardBackgroundColor="@color/card_view_bg_color"
+    card_view:cardCornerRadius="@dimen/card_view_radius"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rl_coins_height">
+
+        <ImageView
+            android:id="@+id/imageViewCoin"
+            android:layout_width="@dimen/coins_image_width"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/padding_s"
+            android:layout_height="@dimen/coins_image_height"
+            android:src="@drawable/ic_wallpaper_24px"
+            />
+
+        <TextView
+            android:id="@+id/textViewCoinName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_m"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/imageViewCoin"
+            android:textSize="@dimen/textSizeLarge"
+            android:textStyle="bold"
+            tools:text="COINNAME" />
+
+        <TextView
+            android:id="@+id/textViewCoinPrice"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="@dimen/padding_l"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/textSizeMedium"
+            tools:text="COINPRICE" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
