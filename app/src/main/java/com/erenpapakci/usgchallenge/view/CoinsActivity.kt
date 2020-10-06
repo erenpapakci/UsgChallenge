@@ -17,7 +17,7 @@ class CoinsActivity : BaseActivity() {
 
     private var viewModel = CoinsViewModel()
     private var coinsList = mutableListOf<Coins>()
-    var coinsAdapter: RecyclerViewAdapter? = null
+    private var coinsAdapter: RecyclerViewAdapter? = null
 
     override fun getLayoutRes(): Int = R.layout.activity_coins
 
@@ -26,7 +26,9 @@ class CoinsActivity : BaseActivity() {
         setContentView(R.layout.activity_coins)
         viewModel = ViewModelProvider(this).get(CoinsViewModel::class.java)
         observeCoins()
-        coinsAdapter = RecyclerViewAdapter(coinsList)
+
+
+
     }
 
     private fun observeCoins() {
@@ -35,12 +37,13 @@ class CoinsActivity : BaseActivity() {
                 coinsList = coinsData?.coins as MutableList<Coins>
                 Log.v("Test", "${it.data?.coins}")
                 setAdapter()
-                setOnclick()
+                setOnclickAdapter()
             }
         })
     }
 
     private fun setAdapter(){
+        coinsAdapter = RecyclerViewAdapter(coinsList)
         rvCoin.apply {
             coinsAdapter?.let {
                 setup(context = applicationContext,
@@ -50,16 +53,17 @@ class CoinsActivity : BaseActivity() {
         }
     }
 
-    private fun setOnclick() {
+    private fun setOnclickAdapter(){
         coinsAdapter?.setOnItemClickListener(object : RecyclerViewAdapter.ListItemClickListener {
-           override fun onListItemClick(position: Int) {
+            override fun onListItemClick(position: Int) {
                 showToastMessage(position)
             }
         })
     }
 
     private fun showToastMessage(position: Int) {
-        Toast.makeText(this, coinsList[position].name, Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(this, coinsList[position].name, Toast.LENGTH_SHORT)
+        toast.show()
         coinsAdapter?.notifyItemChanged(position)
     }
 }
