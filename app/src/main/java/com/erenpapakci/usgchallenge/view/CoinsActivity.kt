@@ -1,5 +1,6 @@
 package com.erenpapakci.usgchallenge.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -26,8 +27,6 @@ class CoinsActivity : BaseActivity() {
         setContentView(R.layout.activity_coins)
         viewModel = ViewModelProvider(this).get(CoinsViewModel::class.java)
         observeCoins()
-
-
 
     }
 
@@ -56,14 +55,14 @@ class CoinsActivity : BaseActivity() {
     private fun setOnclickAdapter(){
         coinsAdapter?.setOnItemClickListener(object : RecyclerViewAdapter.ListItemClickListener {
             override fun onListItemClick(position: Int) {
-                showToastMessage(position)
+                showDetail(position)
             }
         })
     }
 
-    private fun showToastMessage(position: Int) {
-        val toast = Toast.makeText(this, coinsList[position].name, Toast.LENGTH_SHORT)
-        toast.show()
-        coinsAdapter?.notifyItemChanged(position)
+    private fun showDetail(position: Int) {
+        val intent = Intent(this, CoinsDetailActivity::class.java)
+        intent.putExtra("CoinDetail", coinsList[position])
+        startActivity(intent)
     }
 }

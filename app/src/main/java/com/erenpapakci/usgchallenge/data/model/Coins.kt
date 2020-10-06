@@ -1,5 +1,9 @@
 package com.erenpapakci.usgchallenge.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Coins(
     val id: Int?,
     val uuid: String?,
@@ -12,4 +16,4 @@ data class Coins(
     val iconUrl: String?,
     val websiteUrl: String?,
     val price: Double?
-)
+):Parcelable

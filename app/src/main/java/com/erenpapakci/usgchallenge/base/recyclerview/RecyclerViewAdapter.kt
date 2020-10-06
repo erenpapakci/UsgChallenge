@@ -26,8 +26,6 @@ class RecyclerViewAdapter (private val coinsData: MutableList<Coins>):
         private val coinName : TextView = view.findViewById(R.id.textViewCoinName)
         private val coinPrice : TextView = view.findViewById(R.id.textViewCoinPrice)
 
-        private val listItemClickListener : ListItemClickListener? = null
-
         fun bindItems(data: Coins) {
             coinImage.loadImage(data.iconUrl)
             coinName.text = data.name?.toUpperCase()
