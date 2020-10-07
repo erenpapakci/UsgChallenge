@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.erenpapakci.usgchallenge.data.CoinsDataSource
+import com.erenpapakci.usgchallenge.data.Resource
 import com.erenpapakci.usgchallenge.data.Status
 import com.erenpapakci.usgchallenge.data.model.CoinRankingModel
 import io.reactivex.android.schedulers.AndroidSchedulers
