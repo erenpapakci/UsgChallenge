@@ -63,7 +63,7 @@ dependencies {
     //CardView
     implementation "androidx.cardview:cardview:1.0.0"
 
-
-
+    //LogInterceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
 
 }

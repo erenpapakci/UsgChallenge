@@ -16,7 +16,7 @@ import com.erenpapakci.usgchallenge.data.model.Coins
 class RecyclerViewAdapter (private val coinsData: MutableList<Coins>):
     RecyclerView.Adapter<RecyclerViewAdapter.CoinsViewHolder>() {
 
-    var listItemClickListener: ListItemClickListener? = null
+    private var listItemClickListener: ListItemClickListener? = null
 
     class CoinsViewHolder(view: View, onItemClickListener: ListItemClickListener): RecyclerView.ViewHolder(view) {
 
