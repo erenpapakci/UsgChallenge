@@ -19,4 +19,5 @@
     <dimen name="coins_imageView_height">90dp</dimen>
 
     <dimen name="rl_coins_height">90dp</dimen>
+    <dimen name="dialog_button_width">180dp</dimen>
 </resources>
