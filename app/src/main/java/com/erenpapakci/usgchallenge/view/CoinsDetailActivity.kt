@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseActivity
+import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
 import com.erenpapakci.usgchallenge.base.extensions.loadImage
 import com.erenpapakci.usgchallenge.data.model.Coins
 import kotlinx.android.synthetic.main.activity_detail_coin.*
@@ -23,5 +24,6 @@ class CoinsDetailActivity: BaseActivity() {
     private fun showDetail(detailCoins: Coins?){
         imageViewCoin.loadImage(detailCoins?.iconUrl)
         textViewCoinDesc.text = detailCoins?.description
+
     }
 }

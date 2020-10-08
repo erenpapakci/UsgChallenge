@@ -8,8 +8,12 @@
     </style>
 
     <style name="dialogButtonStyle">
-        
-
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/rounded_corners</item>
+        <item name="android:layout_marginBottom">@dimen/padding_m</item>
+        <item name="android:layout_marginTop">@dimen/padding_m</item>
+        <item name="android:text">@string/dialog_button_ok</item>
+        <item name="android:textColor">@color/colorWhite</item>
     </style>
-
 </resources>

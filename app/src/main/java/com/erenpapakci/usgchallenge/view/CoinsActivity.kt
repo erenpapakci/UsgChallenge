@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseActivity
+import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
 import com.erenpapakci.usgchallenge.base.extensions.setup
 import com.erenpapakci.usgchallenge.base.recyclerview.RecyclerViewAdapter
 import com.erenpapakci.usgchallenge.data.model.Coins
@@ -32,12 +33,12 @@ class CoinsActivity : BaseActivity() {
 
     private fun observeCoins() {
         viewModel.coinsLiveData.observe(this, Observer {
-            it.data.let { coinsData ->
-                coinsList = coinsData?.coins as MutableList<Coins>
-                Log.v("Test", "${it.data?.coins}")
-                setAdapter()
-                setOnclickAdapter()
-            }
+                it.data.let { coinsData ->
+                    coinsList = coinsData?.coins as MutableList<Coins>
+                    Log.v("Test", "${it.data?.coins}")
+                    setAdapter()
+                    setOnclickAdapter()
+                }
         })
     }
 
@@ -65,4 +66,5 @@ class CoinsActivity : BaseActivity() {
         intent.putExtra("CoinDetail", coinsList[position])
         startActivity(intent)
     }
+
 }

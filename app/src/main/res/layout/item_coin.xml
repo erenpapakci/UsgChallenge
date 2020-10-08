@@ -28,6 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/imageViewCoin"
             android:textSize="@dimen/textSizeLarge"
+            android:fontFamily="@font/roboto_black"
             android:textStyle="bold"
             tools:text="COINNAME" />
 
@@ -35,6 +36,7 @@
             android:id="@+id/textViewCoinPrice"
             android:layout_width="wrap_content"
             android:layout_marginRight="@dimen/padding_l"
+            android:fontFamily="@font/roboto_black"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"
