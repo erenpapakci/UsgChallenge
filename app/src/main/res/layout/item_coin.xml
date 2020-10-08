@@ -13,36 +13,50 @@
 
         <ImageView
             android:id="@+id/imageViewCoin"
+            android:clickable="true"
             android:layout_width="@dimen/coins_image_width"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/padding_s"
             android:layout_height="@dimen/coins_image_height"
-            android:src="@drawable/ic_wallpaper_24px"
-            />
+            android:src="@drawable/ic_wallpaper_24px" />
 
         <TextView
             android:id="@+id/textViewCoinName"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/padding_m"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/imageViewCoin"
             android:textSize="@dimen/textSizeLarge"
+            android:textColor="@color/colorBlack"
             android:fontFamily="@font/roboto_black"
-            android:textStyle="bold"
             tools:text="COINNAME" />
 
-        <TextView
-            android:id="@+id/textViewCoinPrice"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="@dimen/padding_l"
-            android:fontFamily="@font/roboto_black"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="@dimen/textSizeMedium"
-            tools:text="COINPRICE" />
+            <TextView
+                android:id="@+id/textViewCoinPrice"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/padding_m"
+                android:textColor="@color/colorBlack"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/textSizeMedium"
+                tools:text="COINPRICE" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="@dimen/padding_l"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginTop="@dimen/padding_m"
+                android:clickable="true"
+                android:src="@drawable/ic_favorite">
+
+            </ImageView>
 
     </RelativeLayout>
 

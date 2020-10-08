@@ -31,7 +31,16 @@ class RecyclerViewAdapter (private val coinsData: MutableList<Coins>):
             coinName.text = data.name?.toUpperCase()
             coinPrice.text = data?.price?.twoDigit(data.price).toString()
 
-            itemView.setOnClickListener {
+            coinName.setOnClickListener  {
+                if (onItemClickListener != null) {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        onItemClickListener.onListItemClick(position)
+                    }
+                }
+            }
+
+            coinImage.setOnClickListener  {
                 if (onItemClickListener != null) {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
