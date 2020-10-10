@@ -11,6 +11,8 @@ import com.erenpapakci.usgchallenge.base.BaseActivity
 import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
 import com.erenpapakci.usgchallenge.base.extensions.setup
 import com.erenpapakci.usgchallenge.base.recyclerview.RecyclerViewAdapter
+import com.erenpapakci.usgchallenge.data.DataHolder
+import com.erenpapakci.usgchallenge.data.Status
 import com.erenpapakci.usgchallenge.data.model.Coins
 import com.erenpapakci.usgchallenge.viewmodel.CoinsViewModel
 import kotlinx.android.synthetic.main.activity_coins.*
@@ -28,18 +30,23 @@ class CoinsActivity : BaseActivity() {
         setContentView(R.layout.activity_coins)
         viewModel = ViewModelProvider(this).get(CoinsViewModel::class.java)
         observeCoins()
-
     }
 
     private fun observeCoins() {
         viewModel.coinsLiveData.observe(this, Observer {
-                it.data.let { coinsData ->
-                    coinsList = coinsData?.coins as MutableList<Coins>
-                    Log.v("Test", "${it.data?.coins}")
+            when(it.status){
+                Status.SUCCESS -> it.data.let { coinsData ->
+                    coinsList = coinsData?.data?.coins as MutableList<Coins>
                     setAdapter()
                     setOnclickAdapter()
                 }
+                Status.ERROR -> errorAlert(it.message)
+            }
         })
+    }
+
+    private fun errorAlert(error: String?) {
+        createAlertDialog(title = getString(R.string.dialog_title), message = error).show()
     }
 
     private fun setAdapter(){
@@ -66,5 +73,4 @@ class CoinsActivity : BaseActivity() {
         intent.putExtra("CoinDetail", coinsList[position])
         startActivity(intent)
     }
-
 }

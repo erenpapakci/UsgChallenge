@@ -6,6 +6,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface CoinApiService {
-    @GET("coins")
+    @GET("coinsff")
     fun getCoins(): Single<CoinRankingModel>
 }

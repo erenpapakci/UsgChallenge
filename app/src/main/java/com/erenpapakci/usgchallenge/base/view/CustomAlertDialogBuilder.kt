@@ -1,23 +1,12 @@
 package com.erenpapakci.usgchallenge.base.view
 
-import android.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.content.Context
-import android.graphics.drawable.Drawable
-import android.media.Image
-import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import com.erenpapakci.usgchallenge.R
-import java.util.zip.Inflater
 
 class CustomAlertDialogBuilder @JvmOverloads constructor(context: Context):
       AlertDialog.Builder(context){
