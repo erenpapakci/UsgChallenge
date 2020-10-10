@@ -43,7 +43,7 @@ fun Activity.createAlertDialog(
     message: CharSequence? = null,
     defaultDismiss: Boolean = true,
     onDismissAction: (() -> Unit)? = null
-): android.app.AlertDialog = createAlertDialogBuilder(
+): AlertDialog = createAlertDialogBuilder(
     title = title,
     message = message,
     defaultDismiss = defaultDismiss,

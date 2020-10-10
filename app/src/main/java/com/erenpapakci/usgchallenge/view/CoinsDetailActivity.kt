@@ -17,13 +17,12 @@ class CoinsDetailActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val intent : Intent = intent
-        detailCoins = intent.getParcelableExtra<Coins>("CoinDetail")
+        detailCoins = intent.getParcelableExtra("CoinDetail")
         showDetail(detailCoins)
     }
 
     private fun showDetail(detailCoins: Coins?){
         imageViewCoin.loadImage(detailCoins?.iconUrl)
         textViewCoinDesc.text = detailCoins?.description
-
     }
 }
