@@ -2,6 +2,7 @@ package com.erenpapakci.usgchallenge.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
@@ -38,11 +39,20 @@ class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
     private fun observeCoins() {
         viewModel.coinsLiveData.observe(this, Observer {
             when(it.status){
+<<<<<<< HEAD
                 Status.SUCCESS -> it.data?.data?.coins.let { coinsData ->
                     coinsList = coinsData as MutableList<Coins>
                     setAdapter()
                     setOnclickAdapter()
                     swipeRefreshLayout.isRefreshing = false
+=======
+                Status.LOADING -> showBlockingPane()
+                Status.SUCCESS -> it.data.let { coinsData ->
+                    coinsList = it.data?.data?.coins as MutableList<Coins>
+                    setAdapter()
+                    setOnclickAdapter()
+                    hideBlockingPane()
+>>>>>>> 7ec84444ab9e448b2468372a85472a6da564d0e0
                 }
                 Status.ERROR -> errorAlert(it.message)
             }
