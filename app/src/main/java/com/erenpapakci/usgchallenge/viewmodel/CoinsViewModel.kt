@@ -1,6 +1,7 @@
 package com.erenpapakci.usgchallenge.viewmodel
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,6 +29,7 @@ class CoinsViewModel: ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{ resource ->
                 when(resource.status){
+                    Status.LOADING -> _coinsLiveData.value = DataHolder.loading()
                     Status.SUCCESS -> {
                         _coinsLiveData.value = DataHolder.success(resource.data)
                     }
