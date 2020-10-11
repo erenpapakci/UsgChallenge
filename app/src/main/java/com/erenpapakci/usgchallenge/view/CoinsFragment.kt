@@ -28,15 +28,27 @@ class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
         observeCoins()
     }
 
+    override fun initView() {
+        super.initView()
+
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getCoins()
+            coinsAdapter?.notifyDataSetChanged()
+        }
+    }
+
     private fun observeCoins() {
         viewModel.coinsLiveData.observe(this, Observer {
             when(it.status){
                 Status.LOADING -> showBlockingPane()
-                Status.SUCCESS -> it.data.let { coinsData ->
-                    coinsList = it.data?.data?.coins as MutableList<Coins>
-                    setAdapter()
-                    setOnclickAdapter()
-                    hideBlockingPane()
+                Status.SUCCESS -> {
+                    it.data?.data?.coins.let { coinsList ->
+                        this@CoinsFragment.coinsList = coinsList as MutableList<Coins>
+                        setAdapter()
+                        setOnclickAdapter()
+                        swipeRefreshLayout.isRefreshing = false
+                        hideBlockingPane()
+                    }
                 }
                 Status.ERROR -> errorAlert(it.message)
             }

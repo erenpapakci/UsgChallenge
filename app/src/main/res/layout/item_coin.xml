@@ -55,7 +55,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:layout_marginTop="@dimen/padding_m"
                 android:clickable="true"
-                android:src="@drawable/ic_favorite">
+                android:src="@drawable/ic_favorite_24px">
 
             </ImageView>
 
