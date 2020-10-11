@@ -42,10 +42,9 @@
                 android:layout_marginRight="@dimen/padding_m"
                 android:textColor="@color/colorBlack"
                 android:layout_centerVertical="true"
-                android:textAlignment="center"
                 android:textSize="@dimen/textSizeMedium"
                 tools:text="COINPRICE"
-                android:gravity="center_horizontal" />
+                android:gravity="left" />
 
             <ImageView
                 android:layout_width="wrap_content"

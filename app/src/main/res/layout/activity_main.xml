@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.CoinsActivity">
+    android:fitsSystemWindows="true">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCoin"
-        android:scrollbars="vertical"
+<FrameLayout
+        android:id="@+id/framelayout_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+<com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
+        android:id="@+id/bottomNavigationView"
         android:layout_height="wrap_content"
         android:background="@color/bottomNavColor"
         android:layout_alignParentBottom="true"
@@ -21,5 +21,5 @@
         app:itemIconTint="@color/colorWhite"
         app:menu="@menu/bottom_navigation">
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+</com.google.android.material.bottomnavigation.BottomNavigationView>
 </RelativeLayout>
