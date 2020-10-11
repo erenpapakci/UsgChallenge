@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-abstract class BaseViewModelFragment<VM: ViewModel> :  Fragment() {
+abstract class BaseViewModelFragment<VM: ViewModel> :  BaseFragment() {
 
     protected lateinit var viewModel: VM
 

@@ -2,33 +2,28 @@ package com.erenpapakci.usgchallenge.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.erenpapakci.usgchallenge.R
-import com.erenpapakci.usgchallenge.base.BaseActivity
+import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
 import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
 import com.erenpapakci.usgchallenge.base.extensions.setup
 import com.erenpapakci.usgchallenge.base.recyclerview.RecyclerViewAdapter
-import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.Status
 import com.erenpapakci.usgchallenge.data.model.Coins
 import com.erenpapakci.usgchallenge.viewmodel.CoinsViewModel
-import kotlinx.android.synthetic.main.activity_coins.*
+import kotlinx.android.synthetic.main.fragment_coins.*
 
-class CoinsActivity : BaseActivity() {
+class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
 
-    private var viewModel = CoinsViewModel()
+    override fun getLayoutRes(): Int = R.layout.fragment_coins
+    override fun getModelClass(): Class<CoinsViewModel> = CoinsViewModel::class.java
+
     private var coinsList = mutableListOf<Coins>()
     private var coinsAdapter: RecyclerViewAdapter? = null
 
-    override fun getLayoutRes(): Int = R.layout.activity_coins
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_coins)
-        viewModel = ViewModelProvider(this).get(CoinsViewModel::class.java)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.getCoins()
         observeCoins()
     }
 
@@ -36,7 +31,7 @@ class CoinsActivity : BaseActivity() {
         viewModel.coinsLiveData.observe(this, Observer {
             when(it.status){
                 Status.SUCCESS -> it.data.let { coinsData ->
-                    coinsList = coinsData?.data?.coins as MutableList<Coins>
+                    coinsList = it.data?.data?.coins as MutableList<Coins>
                     setAdapter()
                     setOnclickAdapter()
                 }
@@ -45,19 +40,16 @@ class CoinsActivity : BaseActivity() {
         })
     }
 
-    private fun errorAlert(error: String?) {
-        createAlertDialog(title = getString(R.string.dialog_title), message = error).show()
+    private fun setAdapter() {
+        coinsAdapter = RecyclerViewAdapter(coinsList)
+        rvCoin.setup(
+            context = context!!,
+            adapter = coinsAdapter!!
+        )
     }
 
-    private fun setAdapter(){
-        coinsAdapter = RecyclerViewAdapter(coinsList)
-        rvCoin.apply {
-            coinsAdapter?.let {
-                setup(context = applicationContext,
-                    adapter = it
-                )
-            }
-        }
+    private fun errorAlert(error: String?) {
+        activity?.createAlertDialog(title = getString(R.string.dialog_title), message = error)?.show()
     }
 
     private fun setOnclickAdapter(){
@@ -69,8 +61,13 @@ class CoinsActivity : BaseActivity() {
     }
 
     private fun showDetail(position: Int) {
-        val intent = Intent(this, CoinsDetailActivity::class.java)
-        intent.putExtra("CoinDetail", coinsList[position])
-        startActivity(intent)
+        fragmentManager?.beginTransaction()?.
+        replace(R.id.framelayout_main,
+            CoinsDetailFragment.newInstance(coinsList[position]))?.commit()
+    }
+
+    companion object {
+        fun newInstance() = CoinsFragment()
     }
 }
+

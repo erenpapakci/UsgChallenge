@@ -19,12 +19,9 @@ class CoinsViewModel: ViewModel() {
     val coinsLiveData : LiveData<DataHolder<CoinRankingModel>>
         get() = _coinsLiveData
 
-    init {
-        getCoins()
-    }
 
     @SuppressLint("CheckResult")
-    private fun getCoins(){
+    fun getCoins(){
 
         coinsDataSource.fetchCoins()
             .subscribeOn(Schedulers.io())
