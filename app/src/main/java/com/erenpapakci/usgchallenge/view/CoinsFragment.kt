@@ -30,6 +30,10 @@ class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
 
     override fun initView() {
         super.initView()
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
         swipeRefreshLayout.setOnRefreshListener {
             viewModel.getCoins()
             coinsAdapter?.notifyDataSetChanged()
@@ -47,12 +51,23 @@ class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
                     swipeRefreshLayout.isRefreshing = false
 =======
                 Status.LOADING -> showBlockingPane()
+<<<<<<< HEAD
                 Status.SUCCESS -> it.data.let { coinsData ->
                     coinsList = it.data?.data?.coins as MutableList<Coins>
                     setAdapter()
                     setOnclickAdapter()
                     hideBlockingPane()
 >>>>>>> 7ec84444ab9e448b2468372a85472a6da564d0e0
+=======
+                Status.SUCCESS -> {
+                    it.data?.data?.coins.let { coinsList ->
+                        this@CoinsFragment.coinsList = coinsList as MutableList<Coins>
+                        setAdapter()
+                        setOnclickAdapter()
+                        swipeRefreshLayout.isRefreshing = false
+                        hideBlockingPane()
+                    }
+>>>>>>> dev
                 }
                 Status.ERROR -> errorAlert(it.message)
             }
