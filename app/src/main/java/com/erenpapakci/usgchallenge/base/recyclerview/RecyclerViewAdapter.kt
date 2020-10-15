@@ -3,14 +3,13 @@ package com.erenpapakci.usgchallenge.base.recyclerview
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.extensions.loadImage
 import com.erenpapakci.usgchallenge.base.extensions.twoDigit
-import com.erenpapakci.usgchallenge.data.model.Coins
+import com.erenpapakci.usgchallenge.data.remote.model.Coins
 
 
 class RecyclerViewAdapter (private val coinsData: MutableList<Coins>):

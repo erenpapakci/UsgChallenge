@@ -1,4 +1,4 @@
-package com.erenpapakci.usgchallenge.data.model
+package com.erenpapakci.usgchallenge.data.remote.model
 
 data class CoinsData(
     val stats: Stats?,

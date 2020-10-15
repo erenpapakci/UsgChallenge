@@ -1,6 +1,5 @@
-package com.erenpapakci.usgchallenge.data
+package com.erenpapakci.usgchallenge.data.remote
 
-import okhttp3.OkHttp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -22,5 +21,6 @@ class CoinsServiceProvider {
         .client(okHttp.build())
         .build()
 
-    val coinsService: CoinApiService = retrofit.create<CoinApiService>(CoinApiService::class.java)
+    val coinsService: CoinApiService = retrofit.create<CoinApiService>(
+        CoinApiService::class.java)
 }

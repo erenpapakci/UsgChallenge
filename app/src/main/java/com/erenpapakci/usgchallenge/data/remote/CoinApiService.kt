@@ -1,8 +1,7 @@
-package com.erenpapakci.usgchallenge.data
+package com.erenpapakci.usgchallenge.data.remote
 
-import com.erenpapakci.usgchallenge.data.model.CoinRankingModel
+import com.erenpapakci.usgchallenge.data.remote.model.CoinRankingModel
 import io.reactivex.Single
-import retrofit2.Call
 import retrofit2.http.GET
 
 interface CoinApiService {

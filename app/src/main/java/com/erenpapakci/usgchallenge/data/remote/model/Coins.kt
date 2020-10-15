@@ -1,4 +1,4 @@
-package com.erenpapakci.usgchallenge.data.model
+package com.erenpapakci.usgchallenge.data.remote.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
