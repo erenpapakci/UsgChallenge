@@ -1,8 +1,6 @@
 package com.erenpapakci.usgchallenge.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
@@ -10,7 +8,7 @@ import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
 import com.erenpapakci.usgchallenge.base.extensions.setup
 import com.erenpapakci.usgchallenge.base.recyclerview.RecyclerViewAdapter
 import com.erenpapakci.usgchallenge.data.Status
-import com.erenpapakci.usgchallenge.data.model.Coins
+import com.erenpapakci.usgchallenge.data.remote.model.Coins
 import com.erenpapakci.usgchallenge.viewmodel.CoinsViewModel
 import kotlinx.android.synthetic.main.fragment_coins.*
 

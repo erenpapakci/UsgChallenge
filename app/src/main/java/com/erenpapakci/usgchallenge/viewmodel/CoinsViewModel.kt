@@ -1,20 +1,20 @@
 package com.erenpapakci.usgchallenge.viewmodel
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.erenpapakci.usgchallenge.data.CoinsDataSource
+import com.erenpapakci.usgchallenge.data.remote.CoinsDataSource
 import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.Status
-import com.erenpapakci.usgchallenge.data.model.CoinRankingModel
+import com.erenpapakci.usgchallenge.data.remote.model.CoinRankingModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class CoinsViewModel: ViewModel() {
 
-    private val coinsDataSource = CoinsDataSource()
+    private val coinsDataSource =
+        CoinsDataSource()
     private val _coinsLiveData = MutableLiveData<DataHolder<CoinRankingModel>>()
 
     val coinsLiveData : LiveData<DataHolder<CoinRankingModel>>
