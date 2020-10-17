@@ -20,20 +20,12 @@ class CoinsDataSource {
                 .getCoins()
                 .observeOn(Schedulers.io())
                 .subscribe(
-                    {coins ->
-                        emitter.onNext(
-                            DataHolder.success(
-                                coins
-                            )
-                        )
+                    { coins ->
+                        emitter.onNext(DataHolder.success(coins))
                         emitter.onComplete()
                     },
                     { error ->
-                        emitter.onNext(
-                            DataHolder.error(
-                                error.message ?: "Error"
-                            )
-                        )
+                        emitter.onNext(DataHolder.error(error.message ?: "Error"))
                         emitter.onComplete()
                     }
                 )
