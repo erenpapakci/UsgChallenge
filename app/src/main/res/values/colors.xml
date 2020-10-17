@@ -8,6 +8,7 @@
     <color name ="alert_dialog_color">#DD0A0A</color>
     <color name ="colorWhite">#F6F4F4</color>
     <color name ="colorBlack">#222020</color>
+    <color name ="colorRed">#D33636</color>
     <color name ="progressColor">#FF9800</color>
     <color name ="bottomNavColor">#3E3D3D</color>
 </resources>

@@ -1,6 +1,7 @@
 package com.erenpapakci.usgchallenge.view
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
@@ -70,7 +71,15 @@ class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
             override fun onListItemClick(position: Int) {
                 showDetail(position)
             }
+
+            override fun onFavoriteItemClick(position: Int) {
+                addFavoriteDb(coinsList[position])
+            }
         })
+    }
+
+    private fun addFavoriteDb(data: Coins) {
+        viewModel.addToFavorite(data)
     }
 
     private fun showDetail(position: Int) {

@@ -60,4 +60,5 @@ abstract class BaseViewModelFragment<VM: ViewModel> :  BaseFragment() {
         }
     }
 
+
 }

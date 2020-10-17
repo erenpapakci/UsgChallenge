@@ -24,6 +24,7 @@ class RecyclerViewAdapter (private val coinsData: MutableList<Coins>):
         private val coinImage : ImageView = view.findViewById(R.id.imageViewCoin)
         private val coinName : TextView = view.findViewById(R.id.textViewCoinName)
         private val coinPrice : TextView = view.findViewById(R.id.textViewCoinPrice)
+        private val addFavorite : ImageView = view.findViewById(R.id.imageViewAddFavorite)
 
         fun bindItems(data: Coins) {
             coinImage.loadImage(data.iconUrl)
@@ -31,20 +32,24 @@ class RecyclerViewAdapter (private val coinsData: MutableList<Coins>):
             coinPrice.text = data?.price?.twoDigit(data.price).toString()
 
             coinName.setOnClickListener  {
-                if (onItemClickListener != null) {
-                    val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        onItemClickListener.onListItemClick(position)
-                    }
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClickListener.onListItemClick(position)
                 }
             }
 
             coinImage.setOnClickListener  {
-                if (onItemClickListener != null) {
-                    val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        onItemClickListener.onListItemClick(position)
-                    }
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClickListener.onListItemClick(position)
+                }
+            }
+
+            addFavorite.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION){
+                    onItemClickListener.onFavoriteItemClick((position))
+                    addFavorite.setImageResource(R.drawable.ic_favorite_red_24px)
                 }
             }
         }
@@ -65,6 +70,7 @@ class RecyclerViewAdapter (private val coinsData: MutableList<Coins>):
 
     interface ListItemClickListener {
         fun onListItemClick(position: Int)
+        fun onFavoriteItemClick(position: Int)
     }
 
     fun setOnItemClickListener(listItemClickListener : ListItemClickListener){
