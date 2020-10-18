@@ -25,7 +25,10 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
         viewModel.favoriteCoinLiveData.observe(this, Observer {
             when(it.status){
                 Status.LOADING -> showBlockingPane()
-                Status.SUCCESS -> showCoinName(it.data?.first()?.name!!)
+                Status.SUCCESS -> {
+                    hideBlockingPane()
+                    showCoinName(it.data?.first()?.name!!)
+                }
                 Status.ERROR -> errorAlert(it.message)
             }
         })
