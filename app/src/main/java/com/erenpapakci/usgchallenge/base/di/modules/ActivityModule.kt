@@ -1,4 +1,4 @@
-package com.erenpapakci.usgchallenge.base.di
+package com.erenpapakci.usgchallenge.base.di.modules
 
 import com.erenpapakci.usgchallenge.ui.MainActivity
 import dagger.Module

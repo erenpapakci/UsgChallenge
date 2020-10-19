@@ -1,4 +1,4 @@
-package com.erenpapakci.usgchallenge.base.di
+package com.erenpapakci.usgchallenge.base.di.modules
 
 import com.erenpapakci.usgchallenge.ui.dashboard.view.CoinsFragment
 import com.erenpapakci.usgchallenge.ui.dashboard.di.CoinsFragmentModule

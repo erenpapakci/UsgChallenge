@@ -1,8 +1,8 @@
-package com.erenpapakci.usgchallenge.base.di
+package com.erenpapakci.usgchallenge.base.di.modules
 
 import android.app.Application
 import android.content.Context
-import com.erenpapakci.usgchallenge.base.CoinsApp
+import com.erenpapakci.usgchallenge.CoinsApp
 import dagger.Module
 import dagger.Provides
 

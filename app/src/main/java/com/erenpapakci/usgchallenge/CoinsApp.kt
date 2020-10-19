@@ -1,6 +1,6 @@
-package com.erenpapakci.usgchallenge.base
+package com.erenpapakci.usgchallenge
 
-import com.erenpapakci.usgchallenge.base.di.DaggerAppComponent
+import com.erenpapakci.usgchallenge.base.di.components.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 

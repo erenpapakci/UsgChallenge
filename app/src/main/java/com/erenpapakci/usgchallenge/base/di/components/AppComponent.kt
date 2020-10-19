@@ -1,6 +1,7 @@
-package com.erenpapakci.usgchallenge.base.di
+package com.erenpapakci.usgchallenge.base.di.components
 
-import com.erenpapakci.usgchallenge.base.CoinsApp
+import com.erenpapakci.usgchallenge.CoinsApp
+import com.erenpapakci.usgchallenge.base.di.modules.*
 import com.erenpapakci.usgchallenge.base.di.viewmodel.ViewModelModule
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -15,7 +16,8 @@ import javax.inject.Singleton
         ActivityModule::class,
         FragmentModule::class,
         ViewModelModule::class,
-        DatabaseModule::class
+        DatabaseModule::class,
+        ApiModule::class
     ]
 )
 interface AppComponent : AndroidInjector<CoinsApp> {

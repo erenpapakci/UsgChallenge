@@ -6,15 +6,13 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class CoinsDataSource @Inject constructor(val coinsServiceProvider: CoinsServiceProvider) {
+class CoinsRemoteDataSource @Inject constructor(val coinsService: CoinApiService) {
 
      fun fetchCoins(): Observable<DataHolder<CoinRankingModel>>{
         return Observable.create { emitter ->
 
             emitter.onNext(DataHolder.loading())
-
-            coinsServiceProvider
-                .coinsService
+                coinsService
                 .getCoins()
                 .observeOn(Schedulers.io())
                 .subscribe(

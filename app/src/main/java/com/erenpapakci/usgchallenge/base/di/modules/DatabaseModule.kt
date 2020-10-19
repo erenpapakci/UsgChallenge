@@ -1,4 +1,4 @@
-package com.erenpapakci.usgchallenge.base.di
+package com.erenpapakci.usgchallenge.base.di.modules
 
 import android.content.Context
 import androidx.room.Room
