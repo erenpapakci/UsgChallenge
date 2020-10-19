@@ -1,7 +1,6 @@
 package com.erenpapakci.usgchallenge.data.local
 
-import android.app.Application
-import android.content.Context
+
 import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.local.entity.FavoritesCoinEntity
 import com.erenpapakci.usgchallenge.data.remote.model.Coins
@@ -9,11 +8,11 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
+import javax.inject.Singleton
 
-
-class FavoritesCoinDataSource(application: Application) {
-
-    private val favoritesCoinDao: FavoritesCoinDao = CoinsDatabase(application).favoritesCoinsDao()
+@Singleton
+class FavoritesCoinDataSource @Inject constructor(val favoritesCoinDao: FavoritesCoinDao) {
 
     fun getFavoriteCoins(): Flowable<DataHolder<List<FavoritesCoinEntity>>> {
         return Flowable.create(

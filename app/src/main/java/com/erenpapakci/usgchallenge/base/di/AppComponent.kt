@@ -14,7 +14,8 @@ import javax.inject.Singleton
         AppModule::class,
         ActivityModule::class,
         FragmentModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        DatabaseModule::class
     ]
 )
 interface AppComponent : AndroidInjector<CoinsApp> {

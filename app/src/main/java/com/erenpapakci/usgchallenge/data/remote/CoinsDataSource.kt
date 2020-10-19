@@ -4,11 +4,9 @@ import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.remote.model.CoinRankingModel
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class CoinsDataSource {
-
-    private val coinsServiceProvider =
-        CoinsServiceProvider()
+class CoinsDataSource @Inject constructor(val coinsServiceProvider: CoinsServiceProvider) {
 
      fun fetchCoins(): Observable<DataHolder<CoinRankingModel>>{
         return Observable.create { emitter ->

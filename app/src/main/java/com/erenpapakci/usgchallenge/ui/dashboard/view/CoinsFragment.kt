@@ -73,14 +73,14 @@ class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
             }
 
             override fun onFavoriteItemClick(position: Int) {
-                addFavoriteDb(coinsList[position])
+                //addFavoriteDb(coinsList[position])
             }
         })
     }
 
-    private fun addFavoriteDb(data: Coins) {
+/*    private fun addFavoriteDb(data: Coins) {
         viewModel.addToFavorite(data)
-    }
+    }*/
 
     private fun showDetail(position: Int) {
         fragmentManager?.beginTransaction()?.
