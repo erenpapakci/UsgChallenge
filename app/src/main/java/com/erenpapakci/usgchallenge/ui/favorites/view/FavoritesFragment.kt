@@ -1,14 +1,12 @@
-package com.erenpapakci.usgchallenge.view
+package com.erenpapakci.usgchallenge.ui.favorites.view
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
 import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
-import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.Status
-import com.erenpapakci.usgchallenge.viewmodel.CoinsViewModel
-import com.erenpapakci.usgchallenge.viewmodel.FavoritesViewModel
+import com.erenpapakci.usgchallenge.ui.favorites.viewmodel.FavoritesViewModel
 import kotlinx.android.synthetic.main.fragment_coins_favorites.*
 
 class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
@@ -43,6 +41,7 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
     }
 
     companion object{
-        fun newInstance() = FavoritesFragment()
+        fun newInstance() =
+            FavoritesFragment()
     }
 }

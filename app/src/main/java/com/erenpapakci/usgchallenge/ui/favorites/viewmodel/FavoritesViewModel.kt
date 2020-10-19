@@ -1,12 +1,9 @@
-package com.erenpapakci.usgchallenge.viewmodel
+package com.erenpapakci.usgchallenge.ui.favorites.viewmodel
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
-import android.provider.ContactsContract
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.erenpapakci.usgchallenge.base.BaseViewModel
 import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.Status

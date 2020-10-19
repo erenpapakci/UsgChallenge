@@ -8,7 +8,6 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.erenpapakci.usgchallenge.R
-import com.erenpapakci.usgchallenge.view.MainActivity
 
 abstract class BaseViewModelFragment<VM: ViewModel> :  BaseFragment() {
 

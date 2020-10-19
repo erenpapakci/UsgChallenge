@@ -1,16 +1,13 @@
-package com.erenpapakci.usgchallenge.viewmodel
+package com.erenpapakci.usgchallenge.ui.dashboard.viewmodel
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.erenpapakci.usgchallenge.base.BaseViewModel
 import com.erenpapakci.usgchallenge.data.remote.CoinsDataSource
 import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.Status
-import com.erenpapakci.usgchallenge.data.local.CoinsDatabase
 import com.erenpapakci.usgchallenge.data.local.FavoritesCoinDataSource
 import com.erenpapakci.usgchallenge.data.remote.model.CoinRankingModel
 import com.erenpapakci.usgchallenge.data.remote.model.Coins
