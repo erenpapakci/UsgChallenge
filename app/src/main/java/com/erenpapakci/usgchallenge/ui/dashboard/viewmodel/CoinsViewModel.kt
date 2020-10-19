@@ -1,33 +1,24 @@
-package com.erenpapakci.usgchallenge.viewmodel
+package com.erenpapakci.usgchallenge.ui.dashboard.viewmodel
 
 import android.annotation.SuppressLint
-import android.app.Application
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.erenpapakci.usgchallenge.base.BaseViewModel
-import com.erenpapakci.usgchallenge.data.remote.CoinsDataSource
+import com.erenpapakci.usgchallenge.data.remote.CoinsRemoteDataSource
 import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.Status
-import com.erenpapakci.usgchallenge.data.local.CoinsDatabase
-import com.erenpapakci.usgchallenge.data.local.FavoritesCoinDataSource
 import com.erenpapakci.usgchallenge.data.remote.model.CoinRankingModel
-import com.erenpapakci.usgchallenge.data.remote.model.Coins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class CoinsViewModel(application: Application): BaseViewModel(application) {
+class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSource)
+    : ViewModel(){
 
-    private val coinsDataSource =
-        CoinsDataSource()
     private val _coinsLiveData = MutableLiveData<DataHolder<CoinRankingModel>>()
 
     val coinsLiveData : LiveData<DataHolder<CoinRankingModel>>
         get() = _coinsLiveData
-
-    private var favoriteDataSource = FavoritesCoinDataSource(application)
-
 
     @SuppressLint("CheckResult")
     fun getCoins(){
@@ -47,11 +38,11 @@ class CoinsViewModel(application: Application): BaseViewModel(application) {
             }
     }
 
-    fun addToFavorite(data: Coins) {
-       favoriteDataSource.addToFavorite(data)
-           .subscribeOn(Schedulers.io())
-           .observeOn(AndroidSchedulers.mainThread())
-           .subscribe()
-    }
+//    fun addToFavorite(data: Coins) {
+//       favoriteDataSource.addToFavorite(data)
+//           .subscribeOn(Schedulers.io())
+//           .observeOn(AndroidSchedulers.mainThread())
+//           .subscribe()
+//    }
 
 }

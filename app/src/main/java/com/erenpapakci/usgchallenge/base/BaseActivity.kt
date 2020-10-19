@@ -4,13 +4,12 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.view.Menu
 import androidx.annotation.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.navigation.UiNavigation
-import com.erenpapakci.usgchallenge.base.recyclerview.RecyclerViewAdapter
+import dagger.android.support.DaggerAppCompatActivity
 
-abstract class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity: DaggerAppCompatActivity() {
 
     @LayoutRes
     abstract fun getLayoutRes(): Int

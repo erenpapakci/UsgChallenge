@@ -1,9 +1,8 @@
-package com.erenpapakci.usgchallenge.viewmodel
+package com.erenpapakci.usgchallenge.ui.favorites.viewmodel
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
-import android.provider.ContactsContract
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,15 +13,18 @@ import com.erenpapakci.usgchallenge.data.local.FavoritesCoinDataSource
 import com.erenpapakci.usgchallenge.data.local.entity.FavoritesCoinEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class FavoritesViewModel(application: Application): BaseViewModel(application) {
+class FavoritesViewModel @Inject constructor(
+    val app: Application,
+    val favoritesCoinDataSource: FavoritesCoinDataSource):
+    AndroidViewModel(app) {
 
     val favoriteCoinLiveData : LiveData<DataHolder<List<FavoritesCoinEntity>>>
         get() = _favoriteCoinLiveData
 
     private val _favoriteCoinLiveData = MutableLiveData<DataHolder<List<FavoritesCoinEntity>>>()
 
-    private val favoritesCoinDataSource = FavoritesCoinDataSource(application)
 
     init {
         getFavoriteCoin()

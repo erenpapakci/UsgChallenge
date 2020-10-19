@@ -1,7 +1,6 @@
-package com.erenpapakci.usgchallenge.view
+package com.erenpapakci.usgchallenge.ui.dashboard.view
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
@@ -10,7 +9,8 @@ import com.erenpapakci.usgchallenge.base.extensions.setup
 import com.erenpapakci.usgchallenge.base.recyclerview.RecyclerViewAdapter
 import com.erenpapakci.usgchallenge.data.Status
 import com.erenpapakci.usgchallenge.data.remote.model.Coins
-import com.erenpapakci.usgchallenge.viewmodel.CoinsViewModel
+import com.erenpapakci.usgchallenge.ui.dashboard.viewmodel.CoinsViewModel
+import com.erenpapakci.usgchallenge.ui.detail.view.CoinsDetailFragment
 import kotlinx.android.synthetic.main.fragment_coins.*
 
 class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
@@ -92,23 +92,27 @@ class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
             }
 
             override fun onFavoriteItemClick(position: Int) {
-                addFavoriteDb(coinsList[position])
+                //addFavoriteDb(coinsList[position])
             }
         })
     }
 
-    private fun addFavoriteDb(data: Coins) {
+/*    private fun addFavoriteDb(data: Coins) {
         viewModel.addToFavorite(data)
-    }
+    }*/
 
     private fun showDetail(position: Int) {
         fragmentManager?.beginTransaction()?.
         replace(R.id.framelayout_main,
-            CoinsDetailFragment.newInstance(coinsList[position]))?.commit()
+            CoinsDetailFragment.newInstance(
+                coinsList[position]
+            )
+        )?.commit()
     }
 
     companion object {
-        fun newInstance() = CoinsFragment()
+        fun newInstance() =
+            CoinsFragment()
     }
 }
 

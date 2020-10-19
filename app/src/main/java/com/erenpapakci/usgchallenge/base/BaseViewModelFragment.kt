@@ -8,11 +8,14 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.erenpapakci.usgchallenge.R
-import com.erenpapakci.usgchallenge.view.MainActivity
+import javax.inject.Inject
 
 abstract class BaseViewModelFragment<VM: ViewModel> :  BaseFragment() {
 
     protected lateinit var viewModel: VM
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     abstract fun getModelClass(): Class<VM>
 
@@ -22,7 +25,7 @@ abstract class BaseViewModelFragment<VM: ViewModel> :  BaseFragment() {
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(getModelClass())
+        viewModel = ViewModelProvider(this, viewModelFactory).get(getModelClass())
     }
 
     override fun onDestroyView() {

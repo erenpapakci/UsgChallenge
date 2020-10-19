@@ -1,10 +1,11 @@
-package com.erenpapakci.usgchallenge.view
+package com.erenpapakci.usgchallenge.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseActivity
+import com.erenpapakci.usgchallenge.ui.dashboard.view.CoinsFragment
+import com.erenpapakci.usgchallenge.ui.favorites.view.FavoritesFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
