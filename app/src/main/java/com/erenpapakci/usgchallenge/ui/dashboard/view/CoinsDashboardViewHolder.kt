@@ -25,7 +25,6 @@ class CoinsDashboardViewHolder private constructor(itemView: View) :
     override fun bind(item: CoinsDashboardEntity) {
         textViewName.text = item.name
         textViewPrice.text = item.price
-        Log.v("ViewHolderTest", "ViewHolderTest")
         item.imageLink?.let {
             imageViewCoin.loadImage(it)
         }

@@ -4,6 +4,7 @@ import com.erenpapakci.usgchallenge.base.entity.ViewEntity
 import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
 
 class CoinsDashboardEntity(
+    val coinId: Int?,
     val imageLink: String?,
     val name: String?,
     val price: String?

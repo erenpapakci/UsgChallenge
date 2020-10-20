@@ -38,6 +38,19 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
         swipeRefreshLayout.setOnRefreshListener {
             viewModel.getCoins()
         }
+
+        coinsDashboardAdapter.itemClickListener = {
+             val coinId = (it as? CoinsDashboardEntity)?.coinId
+            navigateToDetailFragment(id = coinId)
+        }
+
+    }
+
+    private fun navigateToDetailFragment(id: Int?){
+        fragmentManager?.beginTransaction()?.replace(
+            R.id.framelayout_main,
+            CoinsDetailFragment.newInstance(id)
+        )?.commit()
     }
 
     private fun observeCoins() {
@@ -62,6 +75,7 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
         coinsList.forEach { coin ->
             updateCoinList.add(
                 CoinsDashboardEntity(
+                    coinId = coin.id,
                     name = coin.name,
                     price = coin.price.toString(),
                     imageLink = coin.iconUrl
