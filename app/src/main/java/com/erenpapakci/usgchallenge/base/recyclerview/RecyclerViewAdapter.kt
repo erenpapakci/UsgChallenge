@@ -1,80 +1,82 @@
 package com.erenpapakci.usgchallenge.base.recyclerview
 
-import android.view.LayoutInflater
-import android.view.View
+import android.annotation.SuppressLint
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.erenpapakci.usgchallenge.R
-import com.erenpapakci.usgchallenge.base.extensions.loadImage
-import com.erenpapakci.usgchallenge.base.extensions.twoDigit
-import com.erenpapakci.usgchallenge.data.remote.model.Coins
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
+class RecyclerViewAdapter constructor(
+    private val items: MutableList<DisplayItem> = ArrayList(),
+    private val itemComperator: DisplayItemComperator,
+    private val viewHolderFactoryMap: Map<Int, ViewHolderFactory>,
+    private val viewBinderFactoryMap: Map<Int, ViewHolderBinder>
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), DiffAdapter {
 
-class RecyclerViewAdapter (private val coinsData: MutableList<Coins>):
-    RecyclerView.Adapter<RecyclerViewAdapter.CoinsViewHolder>() {
+    var itemClickListener: ((item: DisplayItem) -> Unit)? = null
+    var itemLongClickListener: ((item: DisplayItem) -> Boolean)? = null
 
-    private var listItemClickListener: ListItemClickListener? = null
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        viewHolderFactoryMap[viewType]?.createViewHolder(parent)!!
 
-    class CoinsViewHolder(view: View, onItemClickListener: ListItemClickListener): RecyclerView.ViewHolder(view) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        viewBinderFactoryMap[items[position].type()]?.bind(holder, items[position])
+        (holder as ViewHolder<*>).itemClickListener = itemClickListener
+        holder.itemLongClickListener = itemLongClickListener
+    }
 
-        private val onItemClickListener = onItemClickListener
+    override fun getItemCount() = items.size
 
-        private val coinImage : ImageView = view.findViewById(R.id.imageViewCoin)
-        private val coinName : TextView = view.findViewById(R.id.textViewCoinName)
-        private val coinPrice : TextView = view.findViewById(R.id.textViewCoinPrice)
-        private val addFavorite : ImageView = view.findViewById(R.id.imageViewAddFavorite)
+    override fun getItemViewType(position: Int) = items[position].type()
 
-        fun bindItems(data: Coins) {
-            coinImage.loadImage(data.iconUrl)
-            coinName.text = data.name?.toUpperCase()
-            coinPrice.text = data?.price?.twoDigit(data.price).toString()
-
-            coinName.setOnClickListener  {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    onItemClickListener.onListItemClick(position)
-                }
-            }
-
-            coinImage.setOnClickListener  {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    onItemClickListener.onListItemClick(position)
-                }
-            }
-
-            addFavorite.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION){
-                    onItemClickListener.onFavoriteItemClick((position))
-                    addFavorite.setImageResource(R.drawable.ic_favorite_red_24px)
-                }
-            }
+    override fun update(newItems: List<DisplayItem>) {
+        if (items.isEmpty()) {
+            updateAllItems(newItems)
+        } else {
+            updateOnlyChangedItems(newItems)
         }
-
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinsViewHolder {
-        val view = LayoutInflater.from(parent.context).
-            inflate(R.layout.item_coin, parent, false)
-        return CoinsViewHolder(view, listItemClickListener!!)
+    override fun updateAllItems(newItems: List<DisplayItem>) {
+        updateItems(newItems)
+        notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = coinsData.size
-
-    override fun onBindViewHolder(holder: CoinsViewHolder, position: Int) {
-        holder.bindItems(coinsData[position])
+    @SuppressLint("CheckResult")
+    override fun updateOnlyChangedItems(newItems: List<DisplayItem>) {
+        Single.fromCallable { calculateDiffResult(newItems) }
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess { updateItems(newItems) }
+            .subscribe(this::updateWithOnlyDiffResult)
     }
 
-    interface ListItemClickListener {
-        fun onListItemClick(position: Int)
-        fun onFavoriteItemClick(position: Int)
+    override fun updateItems(newItems: List<DisplayItem>) {
+        items.clear()
+        items.addAll(newItems)
     }
 
-    fun setOnItemClickListener(listItemClickListener : ListItemClickListener){
-        this.listItemClickListener = listItemClickListener
+    override fun calculateDiff(newItems: List<DisplayItem>): DiffUtil.DiffResult =
+        DiffUtil.calculateDiff(
+            DiffUtilImpl(
+                items,
+                newItems,
+                itemComperator
+            )
+        )
+
+    override fun updateWithOnlyDiffResult(result: DiffUtil.DiffResult) {
+        result.dispatchUpdatesTo(this)
     }
 
+    override fun addItems(newItems: List<DisplayItem>) {
+        val startRange = items.size
+        items.addAll(newItems)
+        notifyItemRangeChanged(startRange, newItems.size)
+    }
+
+    private fun calculateDiffResult(newItems: List<DisplayItem>): DiffUtil.DiffResult =
+        calculateDiff(newItems)
 }

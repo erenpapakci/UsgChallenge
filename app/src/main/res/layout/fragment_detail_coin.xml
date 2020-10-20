@@ -10,16 +10,18 @@
     android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/imageViewCoin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:background="@drawable/ic_wallpaper_24px"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/padding_xl"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/textViewCoinDesc"
-            android:id="@+id/imageViewCoin"/>
+            app:layout_constraintBottom_toTopOf="@+id/textViewCoinDesc" />
 
         <TextView
+            android:id="@+id/textViewCoinDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/textSizeMedium"
@@ -30,8 +32,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewCoin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/textViewCoinDesc"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

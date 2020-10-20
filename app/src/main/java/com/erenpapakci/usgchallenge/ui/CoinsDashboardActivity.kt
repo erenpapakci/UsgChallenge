@@ -8,7 +8,7 @@ import com.erenpapakci.usgchallenge.ui.dashboard.view.CoinsFragment
 import com.erenpapakci.usgchallenge.ui.favorites.view.FavoritesFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class CoinsDashboardActivity : BaseActivity() {
 
     override fun getLayoutRes(): Int = R.layout.activity_main
 
