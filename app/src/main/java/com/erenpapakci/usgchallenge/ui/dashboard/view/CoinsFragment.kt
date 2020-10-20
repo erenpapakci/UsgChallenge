@@ -32,22 +32,15 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
 
     override fun initView() {
         super.initView()
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
-=======
         rvCoin.apply {
             setup(context = context!!, adapter = coinsDashboardAdapter)
         }
->>>>>>> dev
         swipeRefreshLayout.setOnRefreshListener {
             viewModel.getCoins()
         }
 
         coinsDashboardAdapter.itemClickListener = {
-             val coinId = (it as? CoinsDashboardEntity)?.coinId
+            val coinId = (it as? CoinsDashboardEntity)?.coinId
             navigateToDetailFragment(id = coinId)
         }
 
@@ -63,22 +56,7 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
     private fun observeCoins() {
         viewModel.coinsLiveData.observe(this, Observer {
             when(it.status){
-<<<<<<< HEAD
-                Status.SUCCESS -> it.data?.data?.coins.let { coinsData ->
-                    coinsList = coinsData as MutableList<Coins>
-                    setAdapter()
-                    setOnclickAdapter()
-                    swipeRefreshLayout.isRefreshing = false
-=======
                 Status.LOADING -> showBlockingPane()
-<<<<<<< HEAD
-                Status.SUCCESS -> it.data.let { coinsData ->
-                    coinsList = it.data?.data?.coins as MutableList<Coins>
-                    setAdapter()
-                    setOnclickAdapter()
-                    hideBlockingPane()
->>>>>>> 7ec84444ab9e448b2468372a85472a6da564d0e0
-=======
                 Status.SUCCESS -> {
                     it.data?.data?.coins.let { coinsList ->
                         if (coinsList != null) {
@@ -87,7 +65,6 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
                         swipeRefreshLayout.isRefreshing = false
                         hideBlockingPane()
                     }
->>>>>>> dev
                 }
                 Status.ERROR -> errorAlert(it.message)
             }
