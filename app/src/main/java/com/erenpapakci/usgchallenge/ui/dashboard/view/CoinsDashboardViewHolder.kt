@@ -23,12 +23,12 @@ import javax.inject.Inject
 class CoinsDashboardViewHolder private constructor(itemView: View) :
     ViewHolder<CoinsDashboardEntity>(itemView) {
 
-    private val textViewName: TextView = itemView.findViewById(R.id.textViewCoinName)
+    private val textViewSymbol: TextView = itemView.findViewById(R.id.textViewCoinSymbol)
     private val textViewPrice: TextView = itemView.findViewById(R.id.textViewCoinPrice)
     private val imageViewCoin: ImageView = itemView.findViewById(R.id.imageViewCoin)
 
     override fun bind(item: CoinsDashboardEntity) {
-        textViewName.text = item.name
+        textViewSymbol.text = item.symbol
         item.price.let { price ->
             textViewPrice.text = item.sign + " " + price?.currencyFormatter(price)
         }

@@ -74,7 +74,7 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
             updateCoinList.add(
                 CoinsDashboardEntity(
                     coinId = coin.id,
-                    name = coin.name,
+                    symbol = coin.symbol,
                     price = coin.price,
                     imageLink = coin.iconUrl,
                     sign = sign

@@ -6,7 +6,7 @@ import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
 class CoinsDashboardEntity(
     val coinId: Int?,
     val imageLink: String?,
-    val name: String?,
+    val symbol: String?,
     val price: Double?,
     val sign: String?
 ) : ViewEntity, DisplayItem {

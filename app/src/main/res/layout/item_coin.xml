@@ -19,12 +19,12 @@
             android:src="@drawable/ic_wallpaper_24px"
             android:layout_marginLeft="@dimen/space_s"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@id/textViewCoinName"
+            card_view:layout_constraintEnd_toStartOf="@id/textViewCoinSymbol"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewCoinName"
+            android:id="@+id/textViewCoinSymbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -53,7 +53,7 @@
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/textSizeMedium"
             card_view:layout_constraintStart_toEndOf="@id/imageViewCoin"
-            card_view:layout_constraintTop_toBottomOf="@id/textViewCoinName"
+            card_view:layout_constraintTop_toBottomOf="@id/textViewCoinSymbol"
             tools:text="COINPRICE" />
 
             <ImageView
