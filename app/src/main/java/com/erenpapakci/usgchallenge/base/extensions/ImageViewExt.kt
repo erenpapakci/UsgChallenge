@@ -1,20 +1,15 @@
 package com.erenpapakci.usgchallenge.base.extensions
 
-import android.app.Activity
-import android.content.Context
 import android.view.View
 import android.widget.ImageView
-import com.ahmadrosid.svgloader.SvgLoader
-import com.bumptech.glide.Glide
-import com.erenpapakci.usgchallenge.R
-import javax.inject.Inject
+import com.squareup.picasso.Picasso
 
 
-fun ImageView.loadImage (url: String?, activity: Activity){
-    SvgLoader.pluck()
-        .with(activity)
-        .setPlaceHolder(R.mipmap.ic_launcher, R.mipmap.ic_launcher)
-        .load(url, this);
+fun ImageView.loadImage(url: String?){
+    val convertToPngUrl = url?.replace(".svg",".png")
+    Picasso.get()
+        .load(convertToPngUrl)
+        .into(this)
 }
 
 fun ImageView.hide(){

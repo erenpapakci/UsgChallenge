@@ -3,7 +3,6 @@
     package="com.erenpapakci.usgchallenge">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:name=".CoinsApp"
         android:allowBackup="true"

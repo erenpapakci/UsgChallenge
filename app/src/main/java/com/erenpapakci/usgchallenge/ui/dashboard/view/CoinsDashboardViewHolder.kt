@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.extensions.currencyFormatter
+import com.erenpapakci.usgchallenge.base.extensions.findActivity
 import com.erenpapakci.usgchallenge.base.extensions.loadImage
 import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
 import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolder
@@ -33,6 +34,7 @@ class CoinsDashboardViewHolder private constructor(itemView: View) :
         }
 
         item.imageLink?.let {
+            imageViewCoin.loadImage(it)
         }
 
         itemView.setOnClickListener {
