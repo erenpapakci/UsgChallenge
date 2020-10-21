@@ -1,4 +1,5 @@
 package com.erenpapakci.usgchallenge.data.remote.model
 
-class Base {
-}
+data class Base(
+    val sign: String?
+)
