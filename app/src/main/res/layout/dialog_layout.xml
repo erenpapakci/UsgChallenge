@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/card_view_bg_color"
+        android:background="@color/cardViewBackground"
         android:layout_height="match_parent">
 
         <ImageView
@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_error_24px"
-            android:layout_marginTop="@dimen/padding_m"
+            android:layout_marginTop="@dimen/space_m"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="@dimen/textSizeLarge"
-            android:layout_marginTop="@dimen/padding_s"
+            android:layout_marginTop="@dimen/space_s"
             app:layout_constraintEnd_toEndOf="parent"
             android:fontFamily="@font/roboto_black"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,11 +39,11 @@
             android:id="@+id/dialogMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_m"
+            android:padding="@dimen/space_m"
             android:textSize="@dimen/textSizeMedium"
             android:gravity="center"
             android:fontFamily="@font/roboto_light"
-            android:layout_marginTop="@dimen/padding_s"
+            android:layout_marginTop="@dimen/space_s"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dialogTitle"

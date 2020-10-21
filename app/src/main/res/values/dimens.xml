@@ -5,10 +5,13 @@
     <dimen name="textSizeMedium">16sp</dimen>
     <dimen name="textSizeLarge">18sp</dimen>
 
-    <dimen name="padding_xl">64dp</dimen>
-    <dimen name="padding_l">32dp</dimen>
-    <dimen name="padding_m">16dp</dimen>
-    <dimen name="padding_s">8dp</dimen>
+    <dimen name="space_xxl">128dp</dimen>
+    <dimen name="space_xl">64dp</dimen>
+    <dimen name="space_l">32dp</dimen>
+    <dimen name="space_m">16dp</dimen>
+    <dimen name="space_s">8dp</dimen>
+
+    <dimen name="cardViewHeight">128dp</dimen>
 
     <dimen name="coins_image_width">48dp</dimen>
     <dimen name="coins_image_height">48dp</dimen>

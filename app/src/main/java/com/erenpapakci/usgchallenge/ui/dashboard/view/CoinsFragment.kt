@@ -58,10 +58,8 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
             when(it.status){
                 Status.LOADING -> showBlockingPane()
                 Status.SUCCESS -> {
-                    it.data?.data?.coins.let { coinsList ->
-                        if (coinsList != null) {
-                            addDisplayItem(coinsList)
-                        }
+                    it.data?.data?.let { coinsList ->
+                        addDisplayItem(coinsList.coins, coinsList.base?.sign)
                         swipeRefreshLayout.isRefreshing = false
                         hideBlockingPane()
                     }
@@ -71,14 +69,15 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
         })
     }
 
-    private fun addDisplayItem(coinsList: List<Coins>) {
-        coinsList.forEach { coin ->
+    private fun addDisplayItem(coinsList: List<Coins>?, sign: String?) {
+        coinsList?.forEach { coin ->
             updateCoinList.add(
                 CoinsDashboardEntity(
                     coinId = coin.id,
                     name = coin.name,
-                    price = coin.price.toString(),
-                    imageLink = coin.iconUrl
+                    price = coin.price,
+                    imageLink = coin.iconUrl,
+                    sign = sign
                 )
             )
         }

@@ -1,10 +1,12 @@
 package com.erenpapakci.usgchallenge.base.extensions
 
-import kotlin.math.roundToInt
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
-fun Double.twoDigit(number: Double?): Double{
+fun Double.currencyFormatter(number: Double?): String{
     if (number != null){
-        return (number * 100.0).roundToInt() / 100.0
+        val formatter: NumberFormat = DecimalFormat("###,###,##0.00")
+        return formatter.format(number)
     }
-    return 0.0
+    return ""
 }

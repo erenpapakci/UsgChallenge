@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
 import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
+import com.erenpapakci.usgchallenge.base.extensions.loadImage
 import com.erenpapakci.usgchallenge.data.Status
 import com.erenpapakci.usgchallenge.ui.favorites.viewmodel.FavoritesViewModel
 import kotlinx.android.synthetic.main.fragment_coins_favorites.*
@@ -33,7 +34,7 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
     }
 
     private fun showCoinName(data: String){
-        textViewCoinName.text = data
+
     }
 
     private fun errorAlert(error: String?) {

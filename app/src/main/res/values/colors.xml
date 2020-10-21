@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="card_view_bg_color">#EDEBEB</color>
+    <color name="colorPrimary">#612CAE</color>
+    <color name="colorPrimaryDark">#5317AA</color>
+    <color name="colorAccent">#A585D3</color>
+    <color name="cardViewBackground">#C0A5E6</color>
 
     <color name ="alert_dialog_color">#DD0A0A</color>
     <color name ="colorWhite">#F6F4F4</color>
@@ -11,4 +11,5 @@
     <color name ="colorRed">#D33636</color>
     <color name ="progressColor">#FF9800</color>
     <color name ="bottomNavColor">#3E3D3D</color>
+    <color name ="transParentColor">#37DAD5D5</color>
 </resources>

@@ -4,9 +4,11 @@ import android.view.View
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 
+
 fun ImageView.loadImage(url: String?){
+    val convertToPngUrl = url?.replace(".svg",".png")
     Picasso.get()
-        .load(url)
+        .load(convertToPngUrl)
         .into(this)
 }
 
