@@ -2,6 +2,7 @@ package com.erenpapakci.usgchallenge.ui.dashboard.view
 
 import android.app.Activity
 import android.content.Context
+import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,12 +24,13 @@ import javax.inject.Inject
 class CoinsDashboardViewHolder private constructor(itemView: View) :
     ViewHolder<CoinsDashboardEntity>(itemView) {
 
-    private val textViewName: TextView = itemView.findViewById(R.id.textViewCoinName)
+    private val textViewSymbol: TextView = itemView.findViewById(R.id.textViewCoinSymbol)
     private val textViewPrice: TextView = itemView.findViewById(R.id.textViewCoinPrice)
     private val imageViewCoin: ImageView = itemView.findViewById(R.id.imageViewCoin)
+    private val imageViewFavorite: ImageView = itemView.findViewById(R.id.imageViewAddFavorite)
 
     override fun bind(item: CoinsDashboardEntity) {
-        textViewName.text = item.name
+        textViewSymbol.text = item.symbol
         item.price.let { price ->
             textViewPrice.text = item.sign + " " + price?.currencyFormatter(price)
         }
@@ -37,9 +39,24 @@ class CoinsDashboardViewHolder private constructor(itemView: View) :
             imageViewCoin.loadImage(it)
         }
 
-        itemView.setOnClickListener {
+        imageViewFavorite.setOnClickListener {
+            imageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24px)
+            itemFavoriteClickListener?.invoke(item)
+        }
+
+        textViewSymbol.setOnClickListener {
+            itemClickListener?.invoke(item)
+
+        }
+        textViewPrice.setOnClickListener {
+            itemClickListener?.invoke(item)
+
+        }
+
+        imageViewCoin.setOnClickListener {
             itemClickListener?.invoke(item)
         }
+
 
     }
 

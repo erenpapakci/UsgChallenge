@@ -30,29 +30,6 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
         observeCoins()
     }
 
-    override fun initView() {
-        super.initView()
-        rvCoin.apply {
-            setup(context = context!!, adapter = coinsDashboardAdapter)
-        }
-        swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getCoins()
-        }
-
-        coinsDashboardAdapter.itemClickListener = {
-            val coinId = (it as? CoinsDashboardEntity)?.coinId
-            navigateToDetailFragment(id = coinId)
-        }
-
-    }
-
-    private fun navigateToDetailFragment(id: Int?){
-        fragmentManager?.beginTransaction()?.replace(
-            R.id.framelayout_main,
-            CoinsDetailFragment.newInstance(id)
-        )?.commit()
-    }
-
     private fun observeCoins() {
         viewModel.coinsLiveData.observe(this, Observer {
             when(it.status){
@@ -69,12 +46,41 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
         })
     }
 
+    override fun initView() {
+        super.initView()
+
+        rvCoin.apply {
+            setup(context = context!!, adapter = coinsDashboardAdapter)
+        }
+
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getCoins()
+        }
+
+        coinsDashboardAdapter.itemClickListener = {
+            val coinId = (it as? CoinsDashboardEntity)?.coinId
+            navigateToDetailFragment(id = coinId)
+        }
+
+        coinsDashboardAdapter.itemFavoriteClickListener = {
+            val coinId = (it as? CoinsDashboardEntity)?.coinId
+        }
+
+    }
+
+    private fun navigateToDetailFragment(id: Int?){
+        fragmentManager?.beginTransaction()?.replace(
+            R.id.framelayout_main,
+            CoinsDetailFragment.newInstance(id)
+        )?.commit()
+    }
+
     private fun addDisplayItem(coinsList: List<Coins>?, sign: String?) {
         coinsList?.forEach { coin ->
             updateCoinList.add(
                 CoinsDashboardEntity(
                     coinId = coin.id,
-                    name = coin.name,
+                    symbol = coin.symbol,
                     price = coin.price,
                     imageLink = coin.iconUrl,
                     sign = sign

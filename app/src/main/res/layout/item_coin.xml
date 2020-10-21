@@ -19,12 +19,12 @@
             android:src="@drawable/ic_wallpaper_24px"
             android:layout_marginLeft="@dimen/space_s"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@id/textViewCoinName"
+            card_view:layout_constraintEnd_toStartOf="@id/textViewCoinSymbol"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewCoinName"
+            android:id="@+id/textViewCoinSymbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -53,19 +53,23 @@
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/textSizeMedium"
             card_view:layout_constraintStart_toEndOf="@id/imageViewCoin"
-            card_view:layout_constraintTop_toBottomOf="@id/textViewCoinName"
+            card_view:layout_constraintTop_toBottomOf="@id/textViewCoinSymbol"
             tools:text="COINPRICE" />
 
-            <ImageView
-                android:id="@+id/imageViewAddFavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_marginTop="@dimen/space_m"
-                android:clickable="true"
-                android:src="@drawable/ic_favorite_24px">
-
-            </ImageView>
+        <ImageView
+            android:id="@+id/imageViewAddFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_m"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:src="@drawable/ic_favorite_24px"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.848"
+            card_view:layout_constraintStart_toEndOf="@id/textViewCoinSymbol"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintVertical_bias="0.409" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
