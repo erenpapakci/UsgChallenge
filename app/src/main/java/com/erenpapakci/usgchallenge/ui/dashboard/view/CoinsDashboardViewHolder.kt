@@ -2,6 +2,7 @@ package com.erenpapakci.usgchallenge.ui.dashboard.view
 
 import android.app.Activity
 import android.content.Context
+import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ class CoinsDashboardViewHolder private constructor(itemView: View) :
     private val textViewSymbol: TextView = itemView.findViewById(R.id.textViewCoinSymbol)
     private val textViewPrice: TextView = itemView.findViewById(R.id.textViewCoinPrice)
     private val imageViewCoin: ImageView = itemView.findViewById(R.id.imageViewCoin)
+    private val imageViewFavorite: ImageView = itemView.findViewById(R.id.imageViewAddFavorite)
 
     override fun bind(item: CoinsDashboardEntity) {
         textViewSymbol.text = item.symbol
@@ -37,9 +39,24 @@ class CoinsDashboardViewHolder private constructor(itemView: View) :
             imageViewCoin.loadImage(it)
         }
 
-        itemView.setOnClickListener {
+        imageViewFavorite.setOnClickListener {
+            imageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24px)
+            itemFavoriteClickListener?.invoke(item)
+        }
+
+        textViewSymbol.setOnClickListener {
+            itemClickListener?.invoke(item)
+
+        }
+        textViewPrice.setOnClickListener {
+            itemClickListener?.invoke(item)
+
+        }
+
+        imageViewCoin.setOnClickListener {
             itemClickListener?.invoke(item)
         }
+
 
     }
 

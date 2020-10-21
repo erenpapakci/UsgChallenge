@@ -17,6 +17,7 @@ class RecyclerViewAdapter constructor(
 
     var itemClickListener: ((item: DisplayItem) -> Unit)? = null
     var itemLongClickListener: ((item: DisplayItem) -> Boolean)? = null
+    var itemFavoriteClickListener: ((item: DisplayItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         viewHolderFactoryMap[viewType]?.createViewHolder(parent)!!
@@ -25,6 +26,7 @@ class RecyclerViewAdapter constructor(
         viewBinderFactoryMap[items[position].type()]?.bind(holder, items[position])
         (holder as ViewHolder<*>).itemClickListener = itemClickListener
         holder.itemLongClickListener = itemLongClickListener
+        holder.itemFavoriteClickListener = itemFavoriteClickListener
     }
 
     override fun getItemCount() = items.size

@@ -8,6 +8,7 @@ abstract class ViewHolder<T : ViewEntity>(itemView: View) : RecyclerView.ViewHol
 
     var itemClickListener: ((item: DisplayItem) -> Unit)? = null
     var itemLongClickListener: ((item: DisplayItem) -> Boolean)? = null
+    var itemFavoriteClickListener: ((item: DisplayItem) -> Unit)? = null
 
     abstract fun bind(item: T)
 }
