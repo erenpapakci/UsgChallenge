@@ -15,5 +15,6 @@ data class Coins(
     val iconType: String?,
     val iconUrl: String?,
     val websiteUrl: String?,
-    val price: Double?
+    val price: Double?,
+    val history: List<String>?
 ):Parcelable
