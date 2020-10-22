@@ -74,29 +74,15 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
     }
 
     private fun updateAdapter(displayItemList: List<DisplayItem>?){
-       if(displayItemList != null){
-           coinsDashboardAdapter.updateAllItems(displayItemList)
-       }
+        if(displayItemList != null){
+            coinsDashboardAdapter.updateAllItems(displayItemList)
+        }
     }
 
     private fun recyclerViewSetAdapter(){
         rvCoin.apply {
             setup(context = context!!, adapter = coinsDashboardAdapter)
         }
-
-        swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getCoins()
-        }
-
-        coinsDashboardAdapter.itemClickListener = {
-            val coinId = (it as? CoinsDashboardEntity)?.coinId
-            navigateToDetailFragment(id = coinId)
-        }
-
-        coinsDashboardAdapter.itemFavoriteClickListener = {
-            val coinId = (it as? CoinsDashboardEntity)?.coinId
-        }
-
     }
 
     private fun navigateToDetailFragment(id: Int?){
@@ -115,4 +101,5 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
             CoinsFragment()
     }
 }
+
 
