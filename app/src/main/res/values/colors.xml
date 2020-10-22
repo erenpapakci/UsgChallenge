@@ -12,4 +12,6 @@
     <color name ="progressColor">#FF9800</color>
     <color name ="bottomNavColor">#3E3D3D</color>
     <color name ="transParentColor">#C8F1F0F0</color>
+    <color name ="changePositive">#00b053</color>
+    <color name ="changeNegative">#eb0a25</color>
 </resources>
