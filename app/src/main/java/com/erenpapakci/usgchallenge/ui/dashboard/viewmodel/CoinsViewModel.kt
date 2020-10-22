@@ -13,6 +13,7 @@ import com.erenpapakci.usgchallenge.data.remote.model.Coins
 import com.erenpapakci.usgchallenge.ui.dashboard.view.CoinsDashboardEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 import javax.inject.Inject
 
 class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSource)
@@ -27,7 +28,7 @@ class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSou
         get() = _updateCoinList
 
     private val adapterList = mutableListOf<DisplayItem>()
-
+    private var coinsList : List<Coins>? = null
     init {
         getCoins()
     }
@@ -42,6 +43,7 @@ class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSou
                     Status.LOADING -> _coinsLiveData.value = DataHolder.loading()
                     Status.SUCCESS -> {
                         _coinsLiveData.value = DataHolder.success(resource.data)
+                        coinsList = resource.data?.data?.coins
                         addRecyclerViewAdapter(resource.data?.data?.coins,
                             resource.data?.data?.base?.sign)
                     }
@@ -54,7 +56,7 @@ class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSou
 
     private fun addRecyclerViewAdapter(coinsModel: List<Coins>?, sign: String?) {
         coinsModel?.forEach { coin ->
-            adapterList?.add(
+            adapterList.add(
                 CoinsDashboardEntity(
                     coinId = coin.id,
                     imageLink = coin.iconUrl,
@@ -64,10 +66,34 @@ class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSou
                 )
             )
         }
+        _updateCoinList.value = DataHolder.success(adapterList)
+    }
 
-        if(adapterList != null){
+    fun searchResult(data: String?){
+        val adapterListSearch = mutableListOf<DisplayItem>()
+        if(!data.isNullOrEmpty()){
+            data.let { userTextCoinName ->
+                coinsList?.forEach { apiCoin ->
+                    if(apiCoin.name?.toLowerCase(Locale.ROOT)?.contains(userTextCoinName?.toLowerCase(
+                            Locale.ROOT
+                        ).toString())!!){
+                        adapterListSearch.add(
+                            CoinsDashboardEntity(
+                                coinId = apiCoin.id,
+                                imageLink = apiCoin.iconUrl,
+                                symbol = apiCoin.symbol,
+                                price = apiCoin.price,
+                                sign = "$"
+                            )
+                        )
+                        _updateCoinList.value = DataHolder.success(adapterListSearch)
+                    } else if(adapterListSearch.isEmpty()) {
+                        _updateCoinList.value = DataHolder.success(adapterList)
+                    }
+                }
+            }
+        } else {
             _updateCoinList.value = DataHolder.success(adapterList)
         }
     }
-
 }

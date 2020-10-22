@@ -1,10 +1,12 @@
 package com.erenpapakci.usgchallenge.ui.dashboard.view
 
 import android.os.Bundle
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
 import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
+import com.erenpapakci.usgchallenge.base.extensions.listenChanges
 import com.erenpapakci.usgchallenge.base.extensions.setup
 import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
 import com.erenpapakci.usgchallenge.base.recyclerview.RecyclerViewAdapter
@@ -34,6 +36,13 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
         swipeRefreshLayout.setOnRefreshListener {
             viewModel.getCoins()
         }
+
+        editTextSearch.listenChanges(
+            afterTextChangedListener = {
+                it?.let { result ->
+                    viewModel.searchResult(result.toString().toLowerCase())
+                }
+            })
 
     }
 
@@ -66,7 +75,7 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
 
     private fun updateAdapter(displayItemList: List<DisplayItem>?){
        if(displayItemList != null){
-           coinsDashboardAdapter.update(displayItemList)
+           coinsDashboardAdapter.updateAllItems(displayItemList)
        }
     }
 
