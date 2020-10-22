@@ -11,6 +11,7 @@
         android:layout_height="48dp"
         android:padding="@dimen/space_s"
         android:hint="@string/hilt_message_search"
+        android:drawableLeft="@drawable/ic_search_24px"
         android:background="@drawable/searchbox_bg"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/swipeRefreshLayout"

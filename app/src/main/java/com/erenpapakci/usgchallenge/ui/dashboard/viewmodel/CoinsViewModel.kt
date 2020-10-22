@@ -62,7 +62,9 @@ class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSou
                     imageLink = coin.iconUrl,
                     symbol = coin.symbol,
                     price = coin.price,
-                    sign = sign
+                    sign = sign,
+                    history = coin.history,
+                    change = coin.change
                 )
             )
         }
@@ -83,7 +85,9 @@ class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSou
                                 imageLink = apiCoin.iconUrl,
                                 symbol = apiCoin.symbol,
                                 price = apiCoin.price,
-                                sign = "$"
+                                sign = "$",
+                                history = apiCoin.history,
+                                change = apiCoin.change
                             )
                         )
                         _updateCoinList.value = DataHolder.success(adapterListSearch)

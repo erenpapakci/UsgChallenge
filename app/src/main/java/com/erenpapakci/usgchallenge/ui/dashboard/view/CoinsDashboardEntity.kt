@@ -8,7 +8,9 @@ class CoinsDashboardEntity(
     val imageLink: String?,
     val symbol: String?,
     val price: Double?,
-    val sign: String?
+    val sign: String?,
+    val history: List<String>? = null,
+    val change: Double?
 ) : ViewEntity, DisplayItem {
     override fun type() = CoinsDashboardConstants.TYPES.SHOW
 }
