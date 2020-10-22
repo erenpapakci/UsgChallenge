@@ -1,15 +1,16 @@
 package com.erenpapakci.usgchallenge.ui.dashboard.view
 
 import android.os.Bundle
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
 import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
+import com.erenpapakci.usgchallenge.base.extensions.listenChanges
 import com.erenpapakci.usgchallenge.base.extensions.setup
 import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
 import com.erenpapakci.usgchallenge.base.recyclerview.RecyclerViewAdapter
 import com.erenpapakci.usgchallenge.data.Status
-import com.erenpapakci.usgchallenge.data.remote.model.Coins
 import com.erenpapakci.usgchallenge.ui.dashboard.viewmodel.CoinsViewModel
 import com.erenpapakci.usgchallenge.ui.detail.view.CoinsDetailFragment
 import kotlinx.android.synthetic.main.fragment_coins.*
@@ -22,12 +23,27 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
 
     @Inject
     protected lateinit var coinsDashboardAdapter: RecyclerViewAdapter
-    var updateCoinList = mutableListOf<DisplayItem>()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.getCoins()
         observeCoins()
+        observeUpdateAdapter()
+    }
+
+    override fun initView() {
+        super.initView()
+        recyclerViewSetAdapter()
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getCoins()
+        }
+
+        editTextSearch.listenChanges(
+            afterTextChangedListener = {
+                it?.let { result ->
+                    viewModel.searchResult(result.toString().toLowerCase())
+                }
+            })
+
     }
 
     private fun observeCoins() {
@@ -36,7 +52,6 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
                 Status.LOADING -> showBlockingPane()
                 Status.SUCCESS -> {
                     it.data?.data?.let { coinsList ->
-                        addDisplayItem(coinsList.coins, coinsList.base?.sign)
                         swipeRefreshLayout.isRefreshing = false
                         hideBlockingPane()
                     }
@@ -46,9 +61,25 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
         })
     }
 
-    override fun initView() {
-        super.initView()
+    private fun observeUpdateAdapter(){
+        viewModel.updateCoinList.observe(this, Observer {
+            when(it.status){
+                Status.LOADING -> showBlockingPane()
+                Status.SUCCESS -> {
+                    updateAdapter(it.data)
+                    hideBlockingPane()
+                }
+            }
+        })
+    }
 
+    private fun updateAdapter(displayItemList: List<DisplayItem>?){
+       if(displayItemList != null){
+           coinsDashboardAdapter.updateAllItems(displayItemList)
+       }
+    }
+
+    private fun recyclerViewSetAdapter(){
         rvCoin.apply {
             setup(context = context!!, adapter = coinsDashboardAdapter)
         }
@@ -73,21 +104,6 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
             R.id.framelayout_main,
             CoinsDetailFragment.newInstance(id)
         )?.commit()
-    }
-
-    private fun addDisplayItem(coinsList: List<Coins>?, sign: String?) {
-        coinsList?.forEach { coin ->
-            updateCoinList.add(
-                CoinsDashboardEntity(
-                    coinId = coin.id,
-                    symbol = coin.symbol,
-                    price = coin.price,
-                    imageLink = coin.iconUrl,
-                    sign = sign
-                )
-            )
-        }
-        coinsDashboardAdapter.update(updateCoinList)
     }
 
     private fun errorAlert(error: String?) {

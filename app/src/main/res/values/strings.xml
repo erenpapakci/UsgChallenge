@@ -9,4 +9,5 @@
     <string name="dialog_button_ok">OK</string>
     <string name="dialog_title">Hata</string>
     <string name="dialog_message">İşleminizi Gerçekleştiremiyoruz. Lütfen daha sonra tekrar deneyiniz.</string>
+    <string name="hilt_message_search">Search</string>
 </resources>
