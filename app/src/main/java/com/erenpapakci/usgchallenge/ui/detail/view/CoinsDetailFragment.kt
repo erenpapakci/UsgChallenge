@@ -24,7 +24,6 @@ class CoinsDetailFragment: BaseViewModelFragment<CoinsViewModel>() {
     }
 
     private fun showDetail(id: Int?) {
-        textViewCoinDesc.text = id.toString()
     }
 
     companion object {

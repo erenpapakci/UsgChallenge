@@ -1,7 +1,6 @@
 package com.erenpapakci.usgchallenge.ui.dashboard.view
 
 import android.os.Bundle
-import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment

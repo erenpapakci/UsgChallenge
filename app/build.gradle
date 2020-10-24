@@ -23,13 +23,11 @@ android {
     buildTypes {
 
         debug {
-            buildConfigField "String", "SERVER_URL",  "\"https://api.coinranking.com/v1/public/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {
-            buildConfigField "String", "SERVER_URL",  "\"https://api.coinranking.com/v1/public/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

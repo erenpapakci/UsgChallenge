@@ -10,4 +10,15 @@
     <string name="dialog_title">Hata</string>
     <string name="dialog_message">İşleminizi Gerçekleştiremiyoruz. Lütfen daha sonra tekrar deneyiniz.</string>
     <string name="hilt_message_search">Search</string>
+
+    <!-- Coin Detail -->
+    <string name="statistics_title">value statistics</string>
+    <string name="statistics_title_desc">An overview showing the statistics of ....,
+                such as the base and quote currency, the rank, and trading volume.</string>
+    <string name="statistics_price_to_usd">Price to USD</string>
+    <string name="statistics_price_to_btc">Price to BTC</string>
+    <string name="statistics_rank">Rank</string>
+    <string name="statistics_24h_volume">24h volume</string>
+    <string name="statistics_market_cap">Market Cap</string>
+
 </resources>
