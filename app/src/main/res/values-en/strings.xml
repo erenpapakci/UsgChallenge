@@ -18,7 +18,7 @@
     <string name="menu_favorites">Favorites</string>
 
     <!-- Coin Detail -->
-    <string name="statistics_title">value statistics</string>
+    <string name="statistics_title">Statistics</string>
     <string name="statistics_title_desc">An overview showing the statistics of ....,
                 such as the base and quote currency, the rank, and trading volume.</string>
     <string name="statistics_price_to_usd">Price to USD</string>

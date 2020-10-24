@@ -53,7 +53,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/space_m"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/llStatistics"
@@ -70,7 +69,6 @@
 
             <TextView
                 android:id="@+id/textViewStatisticTitleDesc"
-                android:layout_margin="@dimen/space_s"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="@string/statistics_title_desc" >

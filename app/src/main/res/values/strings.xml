@@ -16,7 +16,7 @@
     <string name="menu_favorites">Favoriler</string>
 
     <!-- Coin Detail -->
-    <string name="statistics_title">İstatistikler</string>
+    <string name="statistics_title">\'nin İstatistikleri</string>
     <string name="statistics_title_desc">İstatistiklerini gösteren genel bir bakış ....,
 baz ve teklif para birimi, rütbe ve işlem hacmi gibi.</string>
     <string name="statistics_price_to_usd">Dolar Karşılığı</string>
