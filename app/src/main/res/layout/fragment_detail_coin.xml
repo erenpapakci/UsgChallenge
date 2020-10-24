@@ -1,38 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageViewCoin"
+        <LinearLayout
+            android:id="@+id/llTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:background="@drawable/ic_wallpaper_24px"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/space_xl"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/textViewCoinDesc" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/frameLayoutChart"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/textViewCoinDesc"
+            <ImageView
+                android:id="@+id/imageViewIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_wallpaper_24px"/>
+
+             <TextView
+                 android:id="@+id/textViewCoinName"
+                 android:layout_marginStart="@dimen/space_m"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 tools:text="COIN_NAME" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutChart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/textSizeMedium"
-            android:padding="@dimen/space_m"
-            android:textStyle="bold"
-            android:fontFamily="@font/roboto_medium"
-            tools:text="@string/coins_detail_des"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewCoin"
+            app:layout_constraintTop_toBottomOf="@id/llTitle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toTopOf="@id/llStatistics"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.yabu.livechart.view.LiveChart
+                android:id="@+id/liveChart"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="163dp" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/llStatisticsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/space_m"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/llStatistics"
+            app:layout_constraintTop_toBottomOf="@id/frameLayoutChart">
+
+            <TextView
+                android:id="@+id/textViewStatisticTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_s"
+                tools:text="@string/statistics_title" >
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/textViewStatisticTitleDesc"
+                android:layout_margin="@dimen/space_s"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/statistics_title_desc" >
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llStatistics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/space_m"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llStatisticsTitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_m"
+                    android:text="@string/statistics_price_to_usd" />
+
+                <TextView
+                    android:id="@+id/textViewStatisticPriceToUsd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginEnd="@dimen/space_m"
+                    tools:text="Value" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_m"
+                    android:text="@string/statistics_price_to_btc" />
+
+                <TextView
+                    android:id="@+id/textViewStatisticPriceToBtc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginEnd="@dimen/space_m"
+                    tools:text="Value" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_m"
+                    android:text="@string/statistics_rank" />
+
+                <TextView
+                    android:id="@+id/textViewStatisticRank"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginEnd="@dimen/space_m"
+                    tools:text="Value" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_m"
+                    android:text="@string/statistics_24h_volume" />
+
+                <TextView
+                    android:id="@+id/textViewStatistic24hVolume"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginEnd="@dimen/space_m"
+                    tools:text="Value"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_m"
+                    android:text="@string/statistics_market_cap" />
+
+                <TextView
+                    android:id="@+id/textViewStatisticMarketCap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginEnd="@dimen/space_m"
+                    tools:text="Value"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
