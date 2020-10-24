@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#5317AA</color>
     <color name="colorAccent">#A585D3</color>
     <color name="cardViewBackground">#C0A5E6</color>
-
+    <color name="cardViewDetailBackground">#D7C6EF</color>
     <color name ="alert_dialog_color">#DD0A0A</color>
     <color name ="colorWhite">#F6F4F4</color>
     <color name ="colorBlack">#222020</color>

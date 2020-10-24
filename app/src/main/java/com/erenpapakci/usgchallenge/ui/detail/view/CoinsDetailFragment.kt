@@ -49,7 +49,7 @@ class CoinsDetailFragment: BaseViewModelFragment<CoinsDetailViewModel>() {
 
     private fun showUI(coin: Coins?) {
         coin?.name?.let { name ->
-            textViewCoinName.text = name
+            textViewCoinName.text = """$name (${coin.symbol})"""
             textViewStatisticTitle.text =
                 """$name ${resources.getString(R.string.statistics_title)}"""
         }
@@ -70,16 +70,18 @@ class CoinsDetailFragment: BaseViewModelFragment<CoinsDetailViewModel>() {
             val historyData = dataPoint?.let { Dataset(it) }
 
             val style = LiveChartStyle().apply {
-                mainColor = R.color.colorRed
-                mainFillColor = Color.MAGENTA
-                baselineColor = Color.BLUE
+                mainColor = R.color.colorWhite
+                mainFillColor = Color.WHITE
+                baselineColor = Color.WHITE
+                boundsLineColor = Color.WHITE
+                guideLineColor = Color.WHITE
                 pathStrokeWidth = 12f
                 baselineStrokeWidth = 6f
             }
 
             liveChart.setDataset(historyData)
-                .drawSmoothPath()
                 .setLiveChartStyle(style)
+                .drawSmoothPath()
                 .drawDataset()
         }
 
