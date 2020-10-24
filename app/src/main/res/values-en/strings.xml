@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UsgChallenge</string>
+
+    <string name="coins_detail_des">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident,
+        sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="dialog_button_ok">OK</string>
+    <string name="dialog_title">Error</string>
+    <string name="dialog_message">We Can\'t Process You. Please try again later.</string>
+    <string name="hilt_message_search">Search</string>
+
+    <!-- Menu -->
+    <string name="menu_home">Home</string>
+    <string name="menu_favorites">Favorites</string>
+
+    <!-- Coin Detail -->
+    <string name="statistics_title">value statistics</string>
+    <string name="statistics_title_desc">An overview showing the statistics of ....,
+                such as the base and quote currency, the rank, and trading volume.</string>
+    <string name="statistics_price_to_usd">Price to USD</string>
+    <string name="statistics_price_to_btc">Price to BTC</string>
+    <string name="statistics_rank">Rank</string>
+    <string name="statistics_24h_volume">24h volume</string>
+    <string name="statistics_market_cap">Market Cap</string>
+</resources>
