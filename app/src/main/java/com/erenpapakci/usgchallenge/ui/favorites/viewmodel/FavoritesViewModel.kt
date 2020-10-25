@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class FavoritesViewModel @Inject constructor(
     val app: Application,
-    val favoritesCoinDataSource: FavoritesCoinDataSource):
+    private val favoritesCoinDataSource: FavoritesCoinDataSource):
     AndroidViewModel(app) {
 
     val favoriteCoinLiveData : LiveData<DataHolder<List<FavoritesCoinEntity>>>

@@ -1,6 +1,8 @@
 package com.erenpapakci.usgchallenge.ui.detail.view
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -57,6 +59,12 @@ class CoinsDetailFragment: BaseViewModelFragment<CoinsDetailViewModel>() {
                 """$name ${resources.getString(R.string.statistics_title)}"""
         }
 
+          textViewCoinName.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(COIN_RANKING_URL)
+            startActivity(intent)
+        }
+
         coin?.iconUrl.let {
             imageViewIcon.loadImage(it)
         }
@@ -109,6 +117,7 @@ class CoinsDetailFragment: BaseViewModelFragment<CoinsDetailViewModel>() {
     }
 
     companion object {
+        const val COIN_RANKING_URL = "https://coinranking.com/"
         const val BUNDLE_COINS_ID = "coins_id"
         fun newInstance(id: Int?) =
             CoinsDetailFragment().apply {

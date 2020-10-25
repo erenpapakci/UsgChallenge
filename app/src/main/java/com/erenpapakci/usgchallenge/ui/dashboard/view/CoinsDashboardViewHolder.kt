@@ -36,17 +36,17 @@ class CoinsDashboardViewHolder private constructor(itemView: View) :
 
 
     override fun bind(item: CoinsDashboardEntity) {
-        textViewSymbol.text = item.symbol
+        textViewSymbol.text = item.coin?.symbol
 
-        item.price.let { price ->
-            textViewPrice.text = """${item.sign.toString()} ${price?.currencyFormatter(price)}"""
+        item.coin?.price.let { price ->
+            textViewPrice.text = """${item.sign} ${price?.currencyFormatter(price)}"""
         }
 
-        item.imageLink?.let {
+        item.coin?.iconUrl?.let {
             imageViewCoin.loadImage(it)
         }
 
-        item.change.let { change ->
+        item.coin?.change.let { change ->
             if (change != null){
                 if(change >= 0){
                     textViewChange.text = """+ $change"""
@@ -60,7 +60,7 @@ class CoinsDashboardViewHolder private constructor(itemView: View) :
 
         val dataPoint = mutableListOf<DataPoint>()
         var xValues  = 0F
-        item.history.let { historyList ->
+        item.coin?.history.let { historyList ->
             historyList?.forEach { history ->
                 dataPoint.add(DataPoint(xValues,history.toFloat()))
                 xValues += 1
