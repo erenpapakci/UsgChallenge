@@ -1,48 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/constraintLayoutDetail"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_s"
+        android:padding="@dimen/space_s"
+        app:cardCornerRadius="@dimen/card_view_radius"
+        app:cardBackgroundColor="@color/cardViewDetailBackground"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/frameLayoutChart"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:id="@+id/llTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/frameLayoutChart"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageViewIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_m"
                 android:src="@drawable/ic_wallpaper_24px"/>
 
-             <TextView
-                 android:id="@+id/textViewCoinName"
-                 android:layout_marginStart="@dimen/space_m"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 tools:text="COIN_NAME" />
+            <TextView
+                android:id="@+id/textViewCoinName"
+                style="@style/coinDetailTextFonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:text="COIN_NAME" />
 
         </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
 
         <FrameLayout
             android:id="@+id/frameLayoutChart"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/llTitle"
+            android:layout_height="150dp"
+            android:layout_marginBottom="@dimen/space_m"
+            app:layout_constraintTop_toBottomOf="@id/cardViewTitle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/llStatistics"
+            app:layout_constraintBottom_toTopOf="@id/cardViewStatistics"
             app:layout_constraintEnd_toEndOf="parent">
 
             <com.yabu.livechart.view.LiveChart
                 android:id="@+id/liveChart"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                app:labelTextColor="@color/colorAccent"
+                app:pathColor="@color/colorAccent"
+                app:secondPathColor="@color/colorAccent"
+                app:mainCornerRadius="4dp"
+                app:secondCornerRadius="4dp"
+                app:pathStrokeWidth="4dp"
+                app:baselineStrokeWidth="4dp"
+                app:baselineDashGap="8dp"
+                app:labelTextHeight="14sp"
+                app:baselineColor="@color/colorPrimaryDark"
+                app:overlayCircleColor="@color/colorPrimaryDark"
+                app:overlayLineColor="@color/colorPrimary"
+                app:overlayCircleDiameter="8dp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="163dp" />
 
@@ -53,10 +81,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/space_m"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/llStatistics"
+            app:layout_constraintBottom_toTopOf="@+id/cardViewStatistics"
             app:layout_constraintTop_toBottomOf="@id/frameLayoutChart">
 
             <TextView
@@ -64,14 +91,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_s"
+                android:textColor="@color/colorWhite"
+                android:fontFamily="@font/roboto_light"
                 tools:text="@string/statistics_title" >
 
             </TextView>
 
             <TextView
                 android:id="@+id/textViewStatisticTitleDesc"
-                android:layout_margin="@dimen/space_s"
                 android:layout_width="match_parent"
+                android:textColor="@color/colorWhite"
                 android:layout_height="wrap_content"
                 tools:text="@string/statistics_title_desc" >
 
@@ -79,15 +108,25 @@
 
         </LinearLayout>
 
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewStatistics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_s"
+        android:padding="@dimen/space_s"
+        app:cardCornerRadius="@dimen/card_view_radius"
+        app:cardBackgroundColor="@color/cardViewBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llStatisticsTitle">
+
         <LinearLayout
-            android:id="@+id/llStatistics"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/space_m"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/llStatisticsTitle">
+            android:layout_margin="@dimen/space_s"
+            android:layout_marginTop="@dimen/space_m">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,15 +136,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_m"
+                    style="@style/coinDetailStaticStyle"
                     android:text="@string/statistics_price_to_usd" />
 
                 <TextView
                     android:id="@+id/textViewStatisticPriceToUsd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_marginEnd="@dimen/space_m"
+                    style="@style/coinDetailStaticValueStyle"
                     tools:text="Value" />
 
             </LinearLayout>
@@ -119,15 +157,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_m"
+                    style="@style/coinDetailStaticStyle"
                     android:text="@string/statistics_price_to_btc" />
 
                 <TextView
                     android:id="@+id/textViewStatisticPriceToBtc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_marginEnd="@dimen/space_m"
+                    style="@style/coinDetailStaticValueStyle"
                     tools:text="Value" />
 
             </LinearLayout>
@@ -142,14 +179,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space_m"
+                    style="@style/coinDetailStaticStyle"
                     android:text="@string/statistics_rank" />
 
                 <TextView
                     android:id="@+id/textViewStatisticRank"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_marginEnd="@dimen/space_m"
+                    style="@style/coinDetailStaticValueStyle"
                     tools:text="Value" />
 
             </LinearLayout>
@@ -164,16 +201,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space_m"
+                    style="@style/coinDetailStaticStyle"
                     android:text="@string/statistics_24h_volume" />
 
                 <TextView
                     android:id="@+id/textViewStatistic24hVolume"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_marginEnd="@dimen/space_m"
-                    tools:text="Value"
-                    tools:ignore="RtlHardcoded" />
+                    style="@style/coinDetailStaticValueStyle"
+                    tools:text="Value" />
 
             </LinearLayout>
 
@@ -187,20 +223,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space_m"
+                    style="@style/coinDetailStaticStyle"
                     android:text="@string/statistics_market_cap" />
 
                 <TextView
                     android:id="@+id/textViewStatisticMarketCap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_marginEnd="@dimen/space_m"
-                    tools:text="Value"
-                    tools:ignore="RtlHardcoded" />
+                    style="@style/coinDetailStaticValueStyle"
+                    tools:text="Value" />
 
             </LinearLayout>
-
-
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

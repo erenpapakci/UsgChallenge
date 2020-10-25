@@ -6,19 +6,23 @@
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
         Excepteur sint occaecat cupidatat non proident,
         sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="dialog_button_ok">OK</string>
+    <string name="dialog_button_ok">Tamam</string>
     <string name="dialog_title">Hata</string>
     <string name="dialog_message">İşleminizi Gerçekleştiremiyoruz. Lütfen daha sonra tekrar deneyiniz.</string>
-    <string name="hilt_message_search">Search</string>
+    <string name="hilt_message_search">Ara</string>
+
+    <!-- Menu -->
+    <string name="menu_home">Anasayfa</string>
+    <string name="menu_favorites">Favoriler</string>
 
     <!-- Coin Detail -->
-    <string name="statistics_title">value statistics</string>
-    <string name="statistics_title_desc">An overview showing the statistics of ....,
-                such as the base and quote currency, the rank, and trading volume.</string>
-    <string name="statistics_price_to_usd">Price to USD</string>
-    <string name="statistics_price_to_btc">Price to BTC</string>
-    <string name="statistics_rank">Rank</string>
-    <string name="statistics_24h_volume">24h volume</string>
-    <string name="statistics_market_cap">Market Cap</string>
+    <string name="statistics_title">\'nin İstatistikleri</string>
+    <string name="statistics_title_desc">İstatistiklerini gösteren genel bir bakış ....,
+baz ve teklif para birimi, rütbe ve işlem hacmi gibi.</string>
+    <string name="statistics_price_to_usd">Dolar Karşılığı</string>
+    <string name="statistics_price_to_btc">BTC Karşılığı</string>
+    <string name="statistics_rank">Sıralaması</string>
+    <string name="statistics_24h_volume">24 Saatlik Hacmi</string>
+    <string name="statistics_market_cap">Piyasa Değeri</string>
 
 </resources>

@@ -43,6 +43,13 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
                 }
             })
 
+        coinsDashboardAdapter.itemClickListener = {
+            val coinId = (it as? CoinsDashboardEntity?)?.coinId
+            coinId.let { id ->
+                navigateToDetailFragment(id)
+            }
+        }
+
     }
 
     private fun observeCoins() {

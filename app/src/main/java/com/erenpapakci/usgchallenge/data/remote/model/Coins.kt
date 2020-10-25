@@ -17,5 +17,8 @@ data class Coins(
     val websiteUrl: String?,
     val price: Double?,
     val history: List<String>?,
-    val change: Double?
+    val change: Double?,
+    val rank: Int?,
+    val volume: Double?,
+    val marketCap: Double?
 ):Parcelable
