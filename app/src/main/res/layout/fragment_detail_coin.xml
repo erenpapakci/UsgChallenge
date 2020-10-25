@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/constraintLayoutDetail"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
@@ -57,6 +58,19 @@
                 android:id="@+id/liveChart"
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
+                app:labelTextColor="@color/colorAccent"
+                app:pathColor="@color/colorAccent"
+                app:secondPathColor="@color/colorAccent"
+                app:mainCornerRadius="4dp"
+                app:secondCornerRadius="4dp"
+                app:pathStrokeWidth="4dp"
+                app:baselineStrokeWidth="4dp"
+                app:baselineDashGap="8dp"
+                app:labelTextHeight="14sp"
+                app:baselineColor="@color/colorPrimaryDark"
+                app:overlayCircleColor="@color/colorPrimaryDark"
+                app:overlayLineColor="@color/colorPrimary"
+                app:overlayCircleDiameter="8dp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="163dp" />
 
@@ -77,6 +91,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_s"
+                android:textColor="@color/colorWhite"
+                android:fontFamily="@font/roboto_light"
                 tools:text="@string/statistics_title" >
 
             </TextView>
@@ -84,6 +100,7 @@
             <TextView
                 android:id="@+id/textViewStatisticTitleDesc"
                 android:layout_width="match_parent"
+                android:textColor="@color/colorWhite"
                 android:layout_height="wrap_content"
                 tools:text="@string/statistics_title_desc" >
 

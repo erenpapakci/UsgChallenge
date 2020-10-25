@@ -2,6 +2,7 @@ package com.erenpapakci.usgchallenge.ui.detail.view
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
@@ -40,6 +41,7 @@ class CoinsDetailFragment: BaseViewModelFragment<CoinsDetailViewModel>() {
             when(it.status){
                 Status.LOADING -> showBlockingPane()
                 Status.SUCCESS -> {
+                    constraintLayoutDetail.visibility = View.VISIBLE
                     hideBlockingPane()
                     showUI(it.data?.data?.coin)
                 }
@@ -48,6 +50,7 @@ class CoinsDetailFragment: BaseViewModelFragment<CoinsDetailViewModel>() {
     }
 
     private fun showUI(coin: Coins?) {
+
         coin?.name?.let { name ->
             textViewCoinName.text = """$name (${coin.symbol})"""
             textViewStatisticTitle.text =
@@ -81,7 +84,9 @@ class CoinsDetailFragment: BaseViewModelFragment<CoinsDetailViewModel>() {
 
             liveChart.setDataset(historyData)
                 .setLiveChartStyle(style)
-                .drawSmoothPath()
+                .drawBaseline()
+                .drawFill(withGradient = true)
+                .drawYBounds()
                 .drawDataset()
         }
 
