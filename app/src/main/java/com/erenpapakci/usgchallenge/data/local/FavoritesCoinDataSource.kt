@@ -12,7 +12,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class FavoritesCoinDataSource @Inject constructor(val favoritesCoinDao: FavoritesCoinDao) {
+class FavoritesCoinDataSource @Inject constructor(private val favoritesCoinDao: FavoritesCoinDao) {
 
     fun getFavoriteCoins(): Flowable<DataHolder<List<FavoritesCoinEntity>>> {
         return Flowable.create(
@@ -47,12 +47,12 @@ class FavoritesCoinDataSource @Inject constructor(val favoritesCoinDao: Favorite
             favoritesCoinDao?.insertFavorite(favoriteCoinEntity)
         }
     }
-//
-//    fun removeFromFavorite(coinId: Int): Completable {
-//        return Completable.create {
-//            favoritesCoinDao?.removeFavorite(coinId)
-//        }
-//    }
+
+    fun removeFromFavorite(coinId: Int): Completable {
+        return Completable.create {
+            favoritesCoinDao?.removeFavorite(coinId)
+        }
+    }
 //
 //    fun removeFromAllFavorite(): Completable {
 //        return Completable.create {

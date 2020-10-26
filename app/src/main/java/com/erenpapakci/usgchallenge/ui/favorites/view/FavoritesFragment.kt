@@ -30,6 +30,14 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
     override fun initView() {
         super.initView()
         setRecyclerViewAdapter()
+
+        favoritesAdapter.itemClickListener = {
+            val id = (it as? FavoritesDisplayItem?)?.coin?.id
+            id.let {
+                viewModel.removeFavoriteCoin(it)
+            }
+        }
+
     }
 
     private fun setRecyclerViewAdapter(){

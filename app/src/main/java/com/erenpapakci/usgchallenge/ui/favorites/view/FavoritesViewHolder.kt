@@ -34,6 +34,9 @@ class FavoritesViewHolder private constructor(itemView: View) :
             imageViewCoin.loadImage(it)
         }
 
+        itemView.setOnClickListener {
+            itemClickListener?.invoke(item)
+        }
 
     }
 
