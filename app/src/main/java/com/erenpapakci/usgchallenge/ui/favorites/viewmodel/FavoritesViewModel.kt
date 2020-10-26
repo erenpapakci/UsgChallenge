@@ -5,12 +5,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.erenpapakci.usgchallenge.base.BaseViewModel
+import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
 import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.Status
 import com.erenpapakci.usgchallenge.data.local.FavoritesCoinDataSource
 import com.erenpapakci.usgchallenge.data.local.entity.FavoritesCoinEntity
+import com.erenpapakci.usgchallenge.data.remote.model.Coins
+import com.erenpapakci.usgchallenge.ui.favorites.view.FavoritesDisplayItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -22,9 +23,13 @@ class FavoritesViewModel @Inject constructor(
 
     val favoriteCoinLiveData : LiveData<DataHolder<List<FavoritesCoinEntity>>>
         get() = _favoriteCoinLiveData
-
     private val _favoriteCoinLiveData = MutableLiveData<DataHolder<List<FavoritesCoinEntity>>>()
 
+    private val _updateCoinList = MutableLiveData<DataHolder<MutableList<DisplayItem>>>()
+    val updateCoinList : LiveData<DataHolder<MutableList<DisplayItem>>>
+        get() = _updateCoinList
+
+    private val adapterList = mutableListOf<DisplayItem>()
 
     init {
         getFavoriteCoin()
@@ -38,7 +43,11 @@ class FavoritesViewModel @Inject constructor(
             .subscribe {resource ->
                 when(resource.status){
                     Status.LOADING -> _favoriteCoinLiveData.value = DataHolder.loading()
-                    Status.SUCCESS -> _favoriteCoinLiveData.value = DataHolder.success(resource.data)
+                    Status.SUCCESS -> {
+                        _favoriteCoinLiveData.value = DataHolder.success(resource.data)
+                        addRecyclerViewAdapter(resource.data)
+
+                    }
                     Status.ERROR -> _favoriteCoinLiveData.value = resource.message?.let {
                         DataHolder.error(
                             it
@@ -47,6 +56,17 @@ class FavoritesViewModel @Inject constructor(
                 }
 
             }
+    }
+
+    private fun addRecyclerViewAdapter(coinsModel: List<FavoritesCoinEntity>?) {
+        coinsModel?.forEach { coin ->
+            adapterList.add(
+                FavoritesDisplayItem(
+                    coin = coin
+                )
+            )
+        }
+        _updateCoinList.value = DataHolder.success(adapterList)
     }
 
 }
