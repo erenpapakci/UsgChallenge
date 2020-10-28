@@ -6,13 +6,12 @@ import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
 import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
-import com.erenpapakci.usgchallenge.base.extensions.loadImage
 import com.erenpapakci.usgchallenge.base.extensions.setup
 import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
-import com.erenpapakci.usgchallenge.base.recyclerview.RecyclerViewAdapter
 import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolder
 import com.erenpapakci.usgchallenge.base.recyclerview.swipeable.SwipeableAdapter
 import com.erenpapakci.usgchallenge.data.Status
+import com.erenpapakci.usgchallenge.ui.detail.view.CoinsDetailFragment
 import com.erenpapakci.usgchallenge.ui.favorites.viewmodel.FavoritesViewModel
 import kotlinx.android.synthetic.main.fragment_coins_favorites.*
 import javax.inject.Inject
@@ -35,6 +34,11 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
         super.initView()
         setRecyclerViewAdapter()
 
+        favoritesAdapter.itemClickListener = { _:View, item: DisplayItem ->
+            val coinId = (item as? FavoritesDisplayItem)?.coin?.id
+            navigateToDetailFragment(coinId)
+        }
+
         favoritesAdapter.deleteIconClickListener = { _: ViewHolder, position: Int ->
             position.let {
                 viewModel.removeFavoriteCoin(it)
@@ -43,6 +47,13 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
 
     }
 
+    private fun navigateToDetailFragment(id: Int?){
+        fragmentManager?.beginTransaction()?.replace(
+            R.id.framelayout_main,
+            CoinsDetailFragment.newInstance(id)
+        )?.commit()
+    }
+    
     private fun setRecyclerViewAdapter(){
         rvFavorites.apply {
             setup(context = context, adapter = favoritesAdapter)
@@ -66,6 +77,7 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
                     if(!it.data.isNullOrEmpty()) {
                        favoritesAdapter.update(it.data)
                     } else {
+                        it.data?.let { it1 -> favoritesAdapter.update(it1) }
                         showNullMessage()
                     }
             }

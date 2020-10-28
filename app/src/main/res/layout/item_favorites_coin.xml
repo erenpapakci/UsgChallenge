@@ -46,8 +46,8 @@
             <LinearLayout
                 android:id="@+id/llRow"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:padding="@dimen/space_m">
 
                 <ImageView
@@ -55,6 +55,7 @@
                     android:layout_width="@dimen/coins_image_width"
                     android:layout_height="@dimen/coins_image_height"
                     android:clickable="true"
+                    android:layout_gravity="center"
                     android:src="@drawable/ic_wallpaper_24px"
                     android:layout_marginStart="@dimen/space_s"
                     android:focusable="true" />
@@ -63,11 +64,9 @@
                     android:id="@+id/textViewCoinSymbol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="@dimen/space_l"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="@dimen/space_l"
                     android:clickable="true"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/roboto_black"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/textSizeLarge"
@@ -78,9 +77,8 @@
                     android:id="@+id/textViewCoinPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="@dimen/space_m"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/roboto_light"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/textSizeMedium"
