@@ -1,6 +1,8 @@
 package com.erenpapakci.usgchallenge.ui.dashboard.viewmodel
 
 import android.annotation.SuppressLint
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +10,7 @@ import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
 import com.erenpapakci.usgchallenge.data.remote.CoinsRemoteDataSource
 import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.Status
+import com.erenpapakci.usgchallenge.data.local.FavoritesCoinDataSource
 import com.erenpapakci.usgchallenge.data.remote.model.CoinRankingModel
 import com.erenpapakci.usgchallenge.data.remote.model.Coins
 import com.erenpapakci.usgchallenge.ui.dashboard.view.CoinsDashboardEntity
@@ -16,8 +19,11 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSource)
-    : ViewModel(){
+class CoinsViewModel @Inject constructor(
+    private val coinsDataSource: CoinsRemoteDataSource,
+    private val favoritesCoinDataSource: FavoritesCoinDataSource,
+    val app: Application)
+    : AndroidViewModel(app){
 
     private val _coinsLiveData = MutableLiveData<DataHolder<CoinRankingModel>>()
     val coinsLiveData : LiveData<DataHolder<CoinRankingModel>>
@@ -58,13 +64,8 @@ class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSou
         coinsModel?.forEach { coin ->
             adapterList.add(
                 CoinsDashboardEntity(
-                    coinId = coin.id,
-                    imageLink = coin.iconUrl,
-                    symbol = coin.symbol,
-                    price = coin.price,
-                    sign = sign,
-                    history = coin.history,
-                    change = coin.change
+                    coin = coin,
+                    sign = sign
                 )
             )
         }
@@ -81,13 +82,8 @@ class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSou
                         ).toString())!!){
                         adapterListSearch.add(
                             CoinsDashboardEntity(
-                                coinId = apiCoin.id,
-                                imageLink = apiCoin.iconUrl,
-                                symbol = apiCoin.symbol,
-                                price = apiCoin.price,
-                                sign = "$",
-                                history = apiCoin.history,
-                                change = apiCoin.change
+                                coin = apiCoin,
+                                sign = "$"
                             )
                         )
                         _updateCoinList.value = DataHolder.success(adapterListSearch)
@@ -100,4 +96,14 @@ class CoinsViewModel @Inject constructor(val coinsDataSource: CoinsRemoteDataSou
             _updateCoinList.value = DataHolder.success(adapterList)
         }
     }
+
+    fun addFavoriteDatabase(coin: Coins?){
+        if (coin != null) {
+            favoritesCoinDataSource.addToFavorite(coin)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+        }
+    }
+
 }

@@ -13,9 +13,9 @@ abstract class FavoritesCoinDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertFavorite(favoritesCoinEntity: FavoritesCoinEntity)
 
-//    @Delete
-//    abstract fun removeFavorite(radioId: Int)
-//
+    @Query("DELETE FROM coins WHERE id = :coinId")
+    abstract fun removeFavorite(coinId: Int)
+
 //    @Query("DELETE FROM coins ")
 //    abstract fun removeAllFavorites()
 }

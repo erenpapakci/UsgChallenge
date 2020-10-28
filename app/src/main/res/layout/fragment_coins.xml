@@ -26,6 +26,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCoin"
             android:scrollbars="vertical"
+            android:padding="@dimen/space_s"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

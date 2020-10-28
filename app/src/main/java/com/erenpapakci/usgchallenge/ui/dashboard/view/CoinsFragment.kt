@@ -44,9 +44,16 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
             })
 
         coinsDashboardAdapter.itemClickListener = {
-            val coinId = (it as? CoinsDashboardEntity?)?.coinId
+            val coinId = (it as? CoinsDashboardEntity?)?.coin?.id
             coinId.let { id ->
                 navigateToDetailFragment(id)
+            }
+        }
+
+        coinsDashboardAdapter.itemFavoriteClickListener = {
+            val coin = (it as? CoinsDashboardEntity?)?.coin
+            coin.let { coin ->
+                viewModel.addFavoriteDatabase(coin)
             }
         }
 
