@@ -2,6 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/cardViewHeight"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="@dimen/space_s"
     card_view:cardCornerRadius="@dimen/card_view_radius"
     card_view:cardBackgroundColor="#AB9DC5"
@@ -11,50 +12,81 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageViewCoin"
-            android:layout_width="@dimen/coins_image_width"
-            android:layout_height="@dimen/coins_image_height"
-            android:clickable="true"
-            android:src="@drawable/ic_wallpaper_24px"
-            android:layout_marginStart="@dimen/space_s"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@id/textViewCoinSymbol"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            android:focusable="true" />
+        <com.erenpapakci.usgchallenge.base.recyclerview.swipeable.SwipeRevealLayout
+            android:id="@+id/registeredSwipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:dragEdge="right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mode="same_level">
 
-        <TextView
-            android:id="@+id/textViewCoinSymbol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="@dimen/space_l"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            android:fontFamily="@font/roboto_black"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/textSizeLarge"
-            card_view:layout_constraintBottom_toTopOf="@+id/textViewCoinPrice"
-            card_view:layout_constraintStart_toEndOf="@id/imageViewCoin"
-            card_view:layout_constraintTop_toTopOf="parent"
-            tools:text="COINNAME"
-            android:focusable="true" />
+            <LinearLayout
+                android:id="@+id/viewBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#D0021B"
+                android:padding="@dimen/space_m">
 
-        <TextView
-            android:id="@+id/textViewCoinPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/roboto_light"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/textSizeMedium"
-            card_view:layout_constraintStart_toEndOf="@id/imageViewCoin"
-            card_view:layout_constraintTop_toBottomOf="@id/textViewCoinSymbol"
-            tools:text="COINPRICE" />
+                <ImageView
+                    android:id="@+id/swipeRegisterIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="false"
+                    android:contentDescription="Sil"
+                    android:focusable="true"
+                    app:srcCompat="@drawable/ic_trash" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_m">
+
+                <ImageView
+                    android:id="@+id/imageViewCoin"
+                    android:layout_width="@dimen/coins_image_width"
+                    android:layout_height="@dimen/coins_image_height"
+                    android:clickable="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_wallpaper_24px"
+                    android:layout_marginStart="@dimen/space_s"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/textViewCoinSymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_l"
+                    android:clickable="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_black"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/textSizeLarge"
+                    tools:text="COINNAME"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/textViewCoinPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_m"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_light"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/textSizeMedium"
+                    tools:text="COINPRICE" />
+
+            </LinearLayout>
+
+        </com.erenpapakci.usgchallenge.base.recyclerview.swipeable.SwipeRevealLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

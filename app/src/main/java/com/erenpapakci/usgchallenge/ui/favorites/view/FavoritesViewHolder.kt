@@ -1,29 +1,35 @@
 package com.erenpapakci.usgchallenge.ui.favorites.view
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.extensions.currencyFormatter
 import com.erenpapakci.usgchallenge.base.extensions.loadImage
-import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
-import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolder
-import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolderBinder
-import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolderFactory
+import com.erenpapakci.usgchallenge.base.recyclerview.*
+import com.erenpapakci.usgchallenge.base.recyclerview.swipeable.SwipeRevealLayout
+import com.erenpapakci.usgchallenge.base.recyclerview.swipeable.Swipeable
+import com.erenpapakci.usgchallenge.base.recyclerview.swipeable.SwipeableViewHolder
 import javax.inject.Inject
 
-class FavoritesViewHolder private constructor(itemView: View) :
-    ViewHolder<FavoritesDisplayItem>(itemView) {
+class FavoritesViewHolder(itemView: View) : SwipeableViewHolder(itemView),
+    Bindable<FavoritesDisplayItem>, Swipeable {
 
-    private val textViewSymbol: TextView = itemView.findViewById(R.id.textViewCoinSymbol)
-    private val textViewPrice: TextView = itemView.findViewById(R.id.textViewCoinPrice)
-    private val imageViewCoin: ImageView = itemView.findViewById(R.id.imageViewCoin)
-
+    override val viewBackground: LinearLayout = itemView.findViewById(R.id.viewBackground)
+    override val viewForeground: LinearLayout = itemView.findViewById(R.id.llRow)
+    private val registeredSwipe: SwipeRevealLayout = itemView.findViewById(R.id.registeredSwipe)
 
     override fun bind(item: FavoritesDisplayItem) {
+         viewBinderHelper?.bind(registeredSwipe, "")
+         val textViewSymbol: TextView = itemView.findViewById(R.id.textViewCoinSymbol)
+         val textViewPrice: TextView = itemView.findViewById(R.id.textViewCoinPrice)
+         val imageViewCoin: ImageView = itemView.findViewById(R.id.imageViewCoin)
+
         textViewSymbol.text = item.coin?.symbol
 
         item.coin?.price.let { price ->
@@ -34,8 +40,17 @@ class FavoritesViewHolder private constructor(itemView: View) :
             imageViewCoin.loadImage(it)
         }
 
-        itemView.setOnClickListener {
-            itemClickListener?.invoke(item)
+        viewBackground.setOnClickListener {
+            deleteIconClickListener?.invoke(this, adapterPosition)
+            registeredSwipe.close(true)
+        }
+        if ((adapterPosition == 0) ) {
+            Handler().post { registeredSwipe.open(true) }
+            Handler().postDelayed({ registeredSwipe.close(true) }, 1000L)
+        }
+
+        viewForeground.setOnClickListener {
+            itemClickListener?.invoke(it, item)
         }
 
     }

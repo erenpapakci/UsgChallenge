@@ -69,12 +69,17 @@ class FavoritesViewModel @Inject constructor(
         _updateCoinList.value = DataHolder.success(adapterList)
     }
 
-     fun removeFavoriteCoin(coinId : Int?){
-        if (coinId != null) {
-            favoritesCoinDataSource.removeFromFavorite(coinId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe()
+     fun removeFavoriteCoin(positionId : Int?){
+        if (positionId != null) {
+            val coinId = (adapterList[positionId] as? FavoritesDisplayItem)?.coin?.id
+            adapterList.removeAt(positionId)
+            coinId?.let { id ->
+                favoritesCoinDataSource.removeFromFavorite(id)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
+                _updateCoinList.value = DataHolder.success(adapterList)
+            }
         }
     }
 

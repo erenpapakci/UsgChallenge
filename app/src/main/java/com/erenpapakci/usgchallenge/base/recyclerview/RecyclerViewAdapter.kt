@@ -1,6 +1,7 @@
 package com.erenpapakci.usgchallenge.base.recyclerview
 
 import android.annotation.SuppressLint
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -8,23 +9,26 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class RecyclerViewAdapter constructor(
-    private val items: MutableList<DisplayItem> = ArrayList(),
-    private val itemComperator: DisplayItemComperator,
+open class RecyclerViewAdapter constructor(
+    val items: MutableList<DisplayItem> = ArrayList(),
+    private val itemComperator: DisplayItemComparator,
     private val viewHolderFactoryMap: Map<Int, ViewHolderFactory>,
     private val viewBinderFactoryMap: Map<Int, ViewHolderBinder>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), DiffAdapter {
 
-    var itemClickListener: ((item: DisplayItem) -> Unit)? = null
-    var itemLongClickListener: ((item: DisplayItem) -> Boolean)? = null
-    var itemFavoriteClickListener: ((item: DisplayItem) -> Unit)? = null
+
+    var itemClickListener: ((view: View, item: DisplayItem) -> Unit)? = null
+    var itemLongClickListener: ((view: View, item: DisplayItem) -> Boolean)? = null
+    var deleteIconClickListener: ((viewHolder: ViewHolder, position: Int) -> Unit)? = null
+    var itemFavoriteClickListener: ((view: View, item: DisplayItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         viewHolderFactoryMap[viewType]?.createViewHolder(parent)!!
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        viewBinderFactoryMap[items[position].type()]?.bind(holder, items[position])
-        (holder as ViewHolder<*>).itemClickListener = itemClickListener
+        val item = items[position]
+        viewBinderFactoryMap[item.type()]?.bind(holder, item)
+        (holder as ViewHolder).itemClickListener = itemClickListener
         holder.itemLongClickListener = itemLongClickListener
         holder.itemFavoriteClickListener = itemFavoriteClickListener
     }
