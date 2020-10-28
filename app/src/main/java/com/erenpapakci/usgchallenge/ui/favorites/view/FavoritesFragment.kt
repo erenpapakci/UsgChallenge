@@ -1,6 +1,7 @@
 package com.erenpapakci.usgchallenge.ui.favorites.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
@@ -59,11 +60,20 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
     private fun observeUpdateCoinList(){
         viewModel.updateCoinList.observe(this, Observer {
             when(it.status){
-                Status.SUCCESS -> it.data?.let { coinList -> favoritesAdapter.update(coinList) }
+                Status.SUCCESS ->
+                    if(!it.data.isNullOrEmpty()) {
+                       favoritesAdapter.update(it.data)
+                    } else {
+                        showNullMessage()
+                    }
             }
         })
     }
 
+    private fun showNullMessage(){
+        llNullMessage.visibility = View.VISIBLE
+        textViewNullMessage.text = resources.getString(R.string.favorites_null_message)
+    }
 
     private fun errorAlert(error: String?) {
         activity?.createAlertDialog(title = getString(R.string.dialog_title), message = error)?.show()

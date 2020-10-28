@@ -26,4 +26,6 @@
     <string name="statistics_rank">Rank</string>
     <string name="statistics_24h_volume">24h volume</string>
     <string name="statistics_market_cap">Market Cap</string>
+    <string name="favorites_null_message">Your Favorites List Empty</string>
+
 </resources>

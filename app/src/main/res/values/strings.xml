@@ -24,5 +24,6 @@ baz ve teklif para birimi, rütbe ve işlem hacmi gibi.</string>
     <string name="statistics_rank">Sıralaması</string>
     <string name="statistics_24h_volume">24 Saatlik Hacmi</string>
     <string name="statistics_market_cap">Piyasa Değeri</string>
+    <string name="favorites_null_message">Favorileriniz boştur</string>
 
 </resources>
