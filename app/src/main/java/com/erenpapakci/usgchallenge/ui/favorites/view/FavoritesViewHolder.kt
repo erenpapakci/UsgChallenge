@@ -9,14 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.extensions.currencyFormatter
 import com.erenpapakci.usgchallenge.base.extensions.loadImage
-import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
-import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolder
-import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolderBinder
-import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolderFactory
+import com.erenpapakci.usgchallenge.base.recyclerview.*
 import javax.inject.Inject
 
-class FavoritesViewHolder private constructor(itemView: View) :
-    ViewHolder<FavoritesDisplayItem>(itemView) {
+class FavoritesViewHolder(itemView: View) : ViewHolder(itemView),
+    Bindable<FavoritesDisplayItem>{
 
     private val textViewSymbol: TextView = itemView.findViewById(R.id.textViewCoinSymbol)
     private val textViewPrice: TextView = itemView.findViewById(R.id.textViewCoinPrice)

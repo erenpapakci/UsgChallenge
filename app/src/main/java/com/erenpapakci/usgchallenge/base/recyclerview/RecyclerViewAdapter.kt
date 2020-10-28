@@ -9,7 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class RecyclerViewAdapter constructor(
-    private val items: MutableList<DisplayItem> = ArrayList(),
+    val items: MutableList<DisplayItem> = ArrayList(),
     private val itemComperator: DisplayItemComperator,
     private val viewHolderFactoryMap: Map<Int, ViewHolderFactory>,
     private val viewBinderFactoryMap: Map<Int, ViewHolderBinder>
@@ -23,8 +23,9 @@ class RecyclerViewAdapter constructor(
         viewHolderFactoryMap[viewType]?.createViewHolder(parent)!!
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        viewBinderFactoryMap[items[position].type()]?.bind(holder, items[position])
-        (holder as ViewHolder<*>).itemClickListener = itemClickListener
+        val item = items[position]
+        viewBinderFactoryMap[item.type()]?.bind(holder, item)
+        (holder as ViewHolder).itemClickListener = itemClickListener
         holder.itemLongClickListener = itemLongClickListener
         holder.itemFavoriteClickListener = itemFavoriteClickListener
     }

@@ -11,10 +11,7 @@ import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.R.*
 import com.erenpapakci.usgchallenge.base.extensions.currencyFormatter
 import com.erenpapakci.usgchallenge.base.extensions.loadImage
-import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
-import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolder
-import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolderBinder
-import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolderFactory
+import com.erenpapakci.usgchallenge.base.recyclerview.*
 import com.yabu.livechart.model.DataPoint
 import com.yabu.livechart.model.Dataset
 import com.yabu.livechart.view.LiveChart
@@ -24,8 +21,8 @@ import javax.inject.Inject
 import kotlin.math.sign
 
 
-class CoinsDashboardViewHolder private constructor(itemView: View) :
-    ViewHolder<CoinsDashboardEntity>(itemView) {
+class CoinsDashboardViewHolder (itemView: View) : ViewHolder(itemView),
+    Bindable<CoinsDashboardEntity>{
 
     private val textViewSymbol: TextView = itemView.findViewById(id.textViewCoinSymbol)
     private val textViewPrice: TextView = itemView.findViewById(id.textViewCoinPrice)
