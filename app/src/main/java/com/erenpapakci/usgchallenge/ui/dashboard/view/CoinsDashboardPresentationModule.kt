@@ -26,12 +26,12 @@ abstract class CoinsDashboardPresentationModule {
 
         @JvmStatic
         @Provides
-        fun provideDisplayItemComperator(): DisplayItemComperator = DefaultDisplayItemComperator()
+        fun provideDisplayItemComperator(): DisplayItemComparator = DefaultDisplayItemComparator()
 
         @JvmStatic
         @Provides
         fun provideRecyclerAdapter(
-            itemComparator: DisplayItemComperator,
+            itemComparator: DisplayItemComparator,
             factoryMap: Map<Int, @JvmSuppressWildcards ViewHolderFactory>,
             binderMap: Map<Int, @JvmSuppressWildcards ViewHolderBinder>
         ): RecyclerViewAdapter {

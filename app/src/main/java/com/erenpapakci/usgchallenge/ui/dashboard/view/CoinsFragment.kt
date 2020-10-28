@@ -1,6 +1,7 @@
 package com.erenpapakci.usgchallenge.ui.dashboard.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import com.erenpapakci.usgchallenge.R
 import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
@@ -43,15 +44,15 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
                 }
             })
 
-        coinsDashboardAdapter.itemClickListener = {
-            val coinId = (it as? CoinsDashboardEntity?)?.coin?.id
+        coinsDashboardAdapter.itemClickListener = { _: View, item: DisplayItem ->
+            val coinId = (item as? CoinsDashboardEntity?)?.coin?.id
             coinId.let { id ->
                 navigateToDetailFragment(id)
             }
         }
 
-        coinsDashboardAdapter.itemFavoriteClickListener = {
-            val coin = (it as? CoinsDashboardEntity?)?.coin
+        coinsDashboardAdapter.itemFavoriteClickListener = { _: View, item: DisplayItem ->
+            val coin = (item as? CoinsDashboardEntity?)?.coin
             coin.let { coin ->
                 viewModel.addFavoriteDatabase(coin)
             }

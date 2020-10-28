@@ -1,6 +1,7 @@
 package com.erenpapakci.usgchallenge.ui.favorites.view
 
 import com.erenpapakci.usgchallenge.base.recyclerview.*
+import com.erenpapakci.usgchallenge.base.recyclerview.swipeable.SwipeableAdapter
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -26,19 +27,17 @@ abstract class FavoritesPresentationModule {
 
         @JvmStatic
         @Provides
-        fun provideDisplayItemComperator(): DisplayItemComperator = DefaultDisplayItemComperator()
+        fun provideDisplayItemComperator(): DisplayItemComparator = DefaultDisplayItemComparator()
 
-        @JvmStatic
         @Provides
-        fun provideRecyclerAdapter(
-            itemComparator: DisplayItemComperator,
-            factoryMap: Map<Int, @JvmSuppressWildcards ViewHolderFactory>,
-            binderMap: Map<Int, @JvmSuppressWildcards ViewHolderBinder>
-        ): RecyclerViewAdapter {
-            return RecyclerViewAdapter(
-                itemComperator = itemComparator,
-                viewHolderFactoryMap = factoryMap,
-                viewBinderFactoryMap = binderMap
+        @JvmStatic
+        fun provideRecyclerViewSwipeableAdapter(
+            factory: Map<Int, @JvmSuppressWildcards ViewHolderFactory>,
+            binder: Map<Int, @JvmSuppressWildcards ViewHolderBinder>
+        ): SwipeableAdapter {
+            return SwipeableAdapter(
+                viewHolderFactoryMap = factory,
+                viewBinderFactoryMap = binder
             )
         }
     }

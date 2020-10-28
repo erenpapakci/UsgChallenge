@@ -81,20 +81,20 @@ class CoinsDashboardViewHolder (itemView: View) : ViewHolder(itemView),
 
         imageViewFavorite.setOnClickListener {
             imageViewFavorite.setImageResource(drawable.ic_favorite_red_24px)
-            itemFavoriteClickListener?.invoke(item)
+            itemFavoriteClickListener?.invoke(it, item)
         }
 
         textViewSymbol.setOnClickListener {
-            itemClickListener?.invoke(item)
+            itemClickListener?.invoke(it, item)
 
         }
         textViewPrice.setOnClickListener {
-            itemClickListener?.invoke(item)
+            itemClickListener?.invoke(it, item)
 
         }
 
         imageViewCoin.setOnClickListener {
-            itemClickListener?.invoke(item)
+            itemClickListener?.invoke(it, item)
         }
 
 

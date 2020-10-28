@@ -8,7 +8,10 @@ import com.erenpapakci.usgchallenge.base.BaseViewModelFragment
 import com.erenpapakci.usgchallenge.base.extensions.createAlertDialog
 import com.erenpapakci.usgchallenge.base.extensions.loadImage
 import com.erenpapakci.usgchallenge.base.extensions.setup
+import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
 import com.erenpapakci.usgchallenge.base.recyclerview.RecyclerViewAdapter
+import com.erenpapakci.usgchallenge.base.recyclerview.ViewHolder
+import com.erenpapakci.usgchallenge.base.recyclerview.swipeable.SwipeableAdapter
 import com.erenpapakci.usgchallenge.data.Status
 import com.erenpapakci.usgchallenge.ui.favorites.viewmodel.FavoritesViewModel
 import kotlinx.android.synthetic.main.fragment_coins_favorites.*
@@ -20,7 +23,7 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
     override fun getLayoutRes() = R.layout.fragment_coins_favorites
 
     @Inject
-    lateinit var favoritesAdapter : RecyclerViewAdapter
+    lateinit var favoritesAdapter : SwipeableAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -32,9 +35,8 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
         super.initView()
         setRecyclerViewAdapter()
 
-        favoritesAdapter.itemClickListener = {
-            val id = (it as? FavoritesDisplayItem?)?.coin?.id
-            id.let {
+        favoritesAdapter.deleteIconClickListener = { _: ViewHolder, position: Int ->
+            position.let {
                 viewModel.removeFavoriteCoin(it)
             }
         }
