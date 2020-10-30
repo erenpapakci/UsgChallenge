@@ -16,6 +16,7 @@ object SupportLibraries {
     const val fireBaseBoM = "com.google.firebase:firebase-bom:${Versions.firebaseBoMversion}"
     const val fireBaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
     const val fireBasePerf = "com.google.firebase:firebase-perf-ktx"
+    const val fireBaseFcm = "'com.google.firebase:firebase-messaging-ktx'"
 }
 /*
  * Test Libraries

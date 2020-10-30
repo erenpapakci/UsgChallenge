@@ -99,4 +99,5 @@ dependencies {
     implementation platform(SupportLibraries.fireBaseBoM)
     implementation SupportLibraries.fireBaseAnalytics
     implementation SupportLibraries.fireBasePerf
+    implementation 'com.google.firebase:firebase-messaging-ktx'
 }
