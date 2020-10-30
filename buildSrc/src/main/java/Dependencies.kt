@@ -3,6 +3,8 @@
  */
 object CoreLibraries {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
+    const val kotlinKtx = "androidx.core:core-ktx:${Versions.kotlinKtxVersion}"
+
 }
 
 /*
@@ -10,7 +12,6 @@ object CoreLibraries {
  */
 object SupportLibraries {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.xVersion}"
-    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.xVersion}"
     const val design = "com.google.android.material:material:${Versions.supportDesignVersion}"
 }
 
@@ -49,4 +50,12 @@ object Libraries {
         "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitVersion}"
     const val picasso = "com.squareup.picasso:picasso:${Versions.picassoVersion}"
     const val scalingLayout = "com.github.iammert:ScalingLayout:${Versions.scalingLayoutVersion}"
+    const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayoutVersion}"
+    const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
+    const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerviewVersion}"
+    const val roomRunTime = "androidx.room:room-runtime:${Versions.roomVersion}"
+    const val roomRxJava = "androidx.room:room-rxjava2:${Versions.roomVersion}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
+    const val cardView = "androidx.cardview:cardview:${Versions.cardViewVersion}"
+    const val liveChart = "com.github.Pfuster12:LiveChart:${Versions.liveChartVersion}"
 }
