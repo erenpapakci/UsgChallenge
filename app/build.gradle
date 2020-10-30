@@ -8,14 +8,25 @@ android {
     buildToolsVersion Config.buildToolVersion
 
     defaultConfig {
-
         applicationId Config.applicationId
         minSdkVersion Config.minSdkVersion
         targetSdkVersion Config.targetSdkVersion
         versionCode Config.versionCode
         versionName Config.versionName
+        testInstrumentationRunner Config.testInstrumentationRunner
+    }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    flavorDimensions Dimensions.default
+    productFlavors {
+        prod {
+            versionCode Prod.versionCode
+            versionName Prod.versionName
+        }
+
+        dev {
+            versionCode Dev.versionCode
+            versionName Dev.versionName
+        }
     }
 
     buildTypes {
@@ -37,54 +48,48 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     //Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.10"
-    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation CoreLibraries.kotlin
+    implementation CoreLibraries.kotlinKtx
 
     //Android
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation SupportLibraries.appCompat
+    implementation SupportLibraries.design
 
     //Architecture Components
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
-    kapt "androidx.lifecycle:lifecycle-compiler:2.2.0"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.2"
-
-    //Test
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'com.google.truth:truth:1.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-    //RecyclerView
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation Libraries.lifecycleExtensions
+    implementation Libraries.swipeRefreshLayout
+    implementation Libraries.constraintlayout
+    implementation Libraries.recyclerview
+    implementation Libraries.cardView
 
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+    implementation Libraries.retrofit
+    implementation Libraries.gson
+    implementation Libraries.logInterceptor
 
     //RxJava
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.13'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    implementation Libraries.rxAndroid
+    implementation Libraries.rxKotlin
+    implementation Libraries.retrofitRxAdapter
 
-    //Tools
-    implementation "com.squareup.picasso:picasso:2.71828"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
-    implementation "androidx.cardview:cardview:1.0.0"
-    implementation 'com.github.Pfuster12:LiveChart:1.3.4'
-
+    //Dagger2
+    implementation Libraries.dagger2AndroidSupport
+    kapt Libraries.dagger2Compiler
+    kapt Libraries.dagger2AndroidProcessor
 
     //Room
-    implementation "androidx.room:room-runtime:2.2.5"
-    implementation "androidx.room:room-rxjava2:2.2.5"
-    kapt "androidx.room:room-compiler:2.2.5"
+    implementation Libraries.roomRunTime
+    implementation Libraries.roomRxJava
+    kapt Libraries.roomCompiler
 
-    //Dagger
-    implementation 'com.google.dagger:dagger:2.28.3'
-    kapt 'com.google.dagger:dagger-compiler:2.28.3'
-    implementation 'com.google.dagger:dagger-android:2.28.3'
-    implementation 'com.google.dagger:dagger-android-support:2.28.3'
-    kapt 'com.google.dagger:dagger-android-processor:2.28.3'
+    //Tools
+    implementation Libraries.picasso
+    implementation Libraries.liveChart
 
+    // Testing
+    testImplementation TestLibraries.jUnit
+    androidTestImplementation TestLibraries.runnner
+    androidTestImplementation TestLibraries.espressoCore
+    testImplementation TestLibraries.mockitoCore
+    androidTestImplementation TestLibraries.mockitoAndroid
 }

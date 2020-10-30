@@ -8,7 +8,7 @@ object Config {
     const val targetSdkVersion = Versions.targetSdkVersion
     const val compileSdkVersion = Versions.compileSdkVersion
     const val buildToolVersion = Versions.buildToolVersion
-    const val testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     const val versionCode = 1
     const val versionName = "1.0.0"
 }
