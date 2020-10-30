@@ -5,12 +5,11 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
 import com.erenpapakci.usgchallenge.data.remote.CoinsRemoteDataSource
 import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.Status
-import com.erenpapakci.usgchallenge.data.local.FavoritesCoinDataSource
+import com.erenpapakci.usgchallenge.data.local.CoinsLocalDataSource
 import com.erenpapakci.usgchallenge.data.remote.model.CoinRankingModel
 import com.erenpapakci.usgchallenge.data.remote.model.Coins
 import com.erenpapakci.usgchallenge.ui.dashboard.view.CoinsDashboardEntity
@@ -21,7 +20,7 @@ import javax.inject.Inject
 
 class CoinsViewModel @Inject constructor(
     private val coinsDataSource: CoinsRemoteDataSource,
-    private val favoritesCoinDataSource: FavoritesCoinDataSource,
+    private val coinsLocalDataSource: CoinsLocalDataSource,
     val app: Application)
     : AndroidViewModel(app){
 
@@ -35,12 +34,13 @@ class CoinsViewModel @Inject constructor(
 
     private val adapterList = mutableListOf<DisplayItem>()
     private var coinsList : List<Coins>? = null
+
     init {
         getCoins()
     }
 
     @SuppressLint("CheckResult")
-     fun getCoins(){
+     fun getCoins() {
         coinsDataSource.fetchCoins()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -99,7 +99,7 @@ class CoinsViewModel @Inject constructor(
 
     fun addFavoriteDatabase(coin: Coins?){
         if (coin != null) {
-            favoritesCoinDataSource.addToFavorite(coin)
+            coinsLocalDataSource.addToFavorite(coin)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()
