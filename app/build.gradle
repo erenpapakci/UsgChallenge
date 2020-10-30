@@ -2,6 +2,8 @@ apply plugin: Plugins.androidApplication
 apply plugin: Plugins.kotlinAndroid
 apply plugin: Plugins.kotlinAndroidExtensions
 apply plugin: Plugins.kotlinKapt
+apply plugin: Plugins.googleServices
+apply plugin: Plugins.firebasePerfMonitor
 
 android {
     compileSdkVersion Config.compileSdkVersion
@@ -92,4 +94,9 @@ dependencies {
     androidTestImplementation TestLibraries.espressoCore
     testImplementation TestLibraries.mockitoCore
     androidTestImplementation TestLibraries.mockitoAndroid
+
+    //Firebase
+    implementation platform(SupportLibraries.fireBaseBoM)
+    implementation SupportLibraries.fireBaseAnalytics
+    implementation SupportLibraries.fireBasePerf
 }
