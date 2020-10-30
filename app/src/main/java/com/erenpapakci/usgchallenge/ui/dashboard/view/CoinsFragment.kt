@@ -33,8 +33,9 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
     override fun initView() {
         super.initView()
         recyclerViewSetAdapter()
+
         swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getCoins()
+            viewModel.refreshData()
         }
 
         editTextSearch.listenChanges(
@@ -65,10 +66,8 @@ open class CoinsFragment: BaseViewModelFragment<CoinsViewModel>() {
             when(it.status){
                 Status.LOADING -> showBlockingPane()
                 Status.SUCCESS -> {
-                    it.data?.data?.let { coinsList ->
                         swipeRefreshLayout.isRefreshing = false
                         hideBlockingPane()
-                    }
                 }
                 Status.ERROR -> errorAlert(it.message)
             }

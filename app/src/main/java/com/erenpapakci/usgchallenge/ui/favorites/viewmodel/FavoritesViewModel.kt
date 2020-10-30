@@ -8,9 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import com.erenpapakci.usgchallenge.base.recyclerview.DisplayItem
 import com.erenpapakci.usgchallenge.data.DataHolder
 import com.erenpapakci.usgchallenge.data.Status
-import com.erenpapakci.usgchallenge.data.local.FavoritesCoinDataSource
+import com.erenpapakci.usgchallenge.data.local.CoinsLocalDataSource
 import com.erenpapakci.usgchallenge.data.local.entity.FavoritesCoinEntity
-import com.erenpapakci.usgchallenge.data.remote.model.Coins
 import com.erenpapakci.usgchallenge.ui.favorites.view.FavoritesDisplayItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -18,7 +17,7 @@ import javax.inject.Inject
 
 class FavoritesViewModel @Inject constructor(
     val app: Application,
-    private val favoritesCoinDataSource: FavoritesCoinDataSource):
+    private val coinsLocalDataSource: CoinsLocalDataSource):
     AndroidViewModel(app) {
 
     val favoriteCoinLiveData : LiveData<DataHolder<List<FavoritesCoinEntity>>>
@@ -37,7 +36,7 @@ class FavoritesViewModel @Inject constructor(
 
     @SuppressLint("CheckResult")
     private fun getFavoriteCoin(){
-        favoritesCoinDataSource.getFavoriteCoins()
+        coinsLocalDataSource.getFavoriteCoins()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {resource ->
@@ -74,7 +73,7 @@ class FavoritesViewModel @Inject constructor(
             val coinId = (adapterList[positionId] as? FavoritesDisplayItem)?.coin?.id
             adapterList.removeAt(positionId)
             coinId?.let { id ->
-                favoritesCoinDataSource.removeFromFavorite(id)
+                coinsLocalDataSource.removeFromFavorite(id)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()
