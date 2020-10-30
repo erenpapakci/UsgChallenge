@@ -17,7 +17,7 @@ abstract class CoinDao {
     @Query("DELETE FROM FavoriteCoins WHERE id = :coinId")
     abstract fun removeFavorite(coinId: Int)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertAllCoins(coinEntityList: List<CoinEntity>)
 
     @Query("SELECT * FROM Coins")
