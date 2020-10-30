@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "107266245856",
+    "firebase_url": "https://usg-challenge.firebaseio.com",
+    "project_id": "usg-challenge",
+    "storage_bucket": "usg-challenge.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107266245856:android:1374ff3cd9a8652a1cfc85",
+        "android_client_info": {
+          "package_name": "com.erenpapakci.usgchallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107266245856-7rr6eev2293aqcg70avgq0g0kptp9pkj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSBhdzeV3ywSHC0e434fUwmmnRlBbG1ck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "107266245856-7rr6eev2293aqcg70avgq0g0kptp9pkj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

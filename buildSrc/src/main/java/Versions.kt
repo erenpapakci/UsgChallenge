@@ -39,4 +39,7 @@ object Versions {
     const val roomVersion = "2.2.5"
     const val cardViewVersion = "1.0.0"
     const val liveChartVersion = "1.3.4"
+    const val firebaseVersion = "4.3.4"
+    const val firebaseBoMversion = "26.0.0"
+    const val firebasePerformancePlugin = "1.3.3"
 }

@@ -13,8 +13,10 @@ object CoreLibraries {
 object SupportLibraries {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.xVersion}"
     const val design = "com.google.android.material:material:${Versions.supportDesignVersion}"
+    const val fireBaseBoM = "com.google.firebase:firebase-bom:${Versions.firebaseBoMversion}"
+    const val fireBaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
+    const val fireBasePerf = "com.google.firebase:firebase-perf-ktx"
 }
-
 /*
  * Test Libraries
  */
