@@ -19,7 +19,7 @@ open class RecyclerViewAdapter constructor(
 
     var itemClickListener: ((view: View, item: DisplayItem) -> Unit)? = null
     var itemLongClickListener: ((view: View, item: DisplayItem) -> Boolean)? = null
-    var deleteIconClickListener: ((viewHolder: ViewHolder, position: Int) -> Unit)? = null
+    var deleteIconClickListener: ((view: View, item: DisplayItem, position: Int) -> Unit)? = null
     var itemFavoriteClickListener: ((view: View, item: DisplayItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =

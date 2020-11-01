@@ -13,6 +13,7 @@ import com.erenpapakci.usgchallenge.base.recyclerview.swipeable.SwipeableAdapter
 import com.erenpapakci.usgchallenge.data.Status
 import com.erenpapakci.usgchallenge.ui.detail.view.CoinsDetailFragment
 import com.erenpapakci.usgchallenge.ui.favorites.viewmodel.FavoritesViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_coins_favorites.*
 import javax.inject.Inject
 
@@ -39,11 +40,26 @@ class FavoritesFragment: BaseViewModelFragment<FavoritesViewModel>() {
             navigateToDetailFragment(coinId)
         }
 
-        favoritesAdapter.deleteIconClickListener = { _: ViewHolder, position: Int ->
-            position.let {
-                viewModel.removeFavoriteCoin(it)
+        favoritesAdapter.deleteIconClickListener = { view: View, displayItem : DisplayItem,
+                                                     position: Int ->
+            position.let { positionId ->
+                val coinName = (displayItem as? FavoritesDisplayItem)?.coin?.name
+                showSnackBar(view, coinName)
+                callRemoveFavoriteCoin(positionId)
             }
         }
+
+    }
+
+    private fun showSnackBar(view: View, coinName: String?){
+        val snackMessage = coinName + " " + resources.getString(R.string.favorites_coin_remove_message)
+        val snack = Snackbar.make(view,snackMessage, Snackbar.LENGTH_SHORT)
+        snack.setBackgroundTint(resources.getColor(R.color.progressColor))
+        snack.show()
+    }
+
+    private fun callRemoveFavoriteCoin(id: Int?){
+        viewModel.removeFavoriteCoin(id)
 
     }
 

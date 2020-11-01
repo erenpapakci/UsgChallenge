@@ -28,4 +28,7 @@
     <string name="statistics_market_cap">Market Cap</string>
     <string name="favorites_null_message">Your Favorites List Empty</string>
 
+    <!-- Favorites -->
+    <string name="favorites_coin_remove_message">deleted.</string>
+
 </resources>
