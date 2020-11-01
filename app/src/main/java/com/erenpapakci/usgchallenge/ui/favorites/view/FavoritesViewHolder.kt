@@ -41,9 +41,10 @@ class FavoritesViewHolder(itemView: View) : SwipeableViewHolder(itemView),
         }
 
         viewBackground.setOnClickListener {
-            deleteIconClickListener?.invoke(this, adapterPosition)
+            deleteIconClickListener?.invoke(itemView, item, adapterPosition)
             registeredSwipe.close(true)
         }
+
         if ((adapterPosition == 0) ) {
             Handler().post { registeredSwipe.open(true) }
             Handler().postDelayed({ registeredSwipe.close(true) }, 1000L)

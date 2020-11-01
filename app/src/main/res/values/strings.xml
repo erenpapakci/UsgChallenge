@@ -26,4 +26,7 @@ baz ve teklif para birimi, rütbe ve işlem hacmi gibi.</string>
     <string name="statistics_market_cap">Piyasa Değeri</string>
     <string name="favorites_null_message">Favorileriniz boştur</string>
 
+    <!-- Favorites -->
+    <string name="favorites_coin_remove_message">silindi.</string>
+
 </resources>
