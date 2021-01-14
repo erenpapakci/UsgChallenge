@@ -32,7 +32,7 @@
   * [ConstraintLayout](https://developer.android.com/training/constraint-layout)
   * [Architecture Components](https://developer.android.com/topic/libraries/architecture)
 * [Picasso](https://square.github.io/picasso/)
-* [Customized Recycler View](https://github.com/savepopulation/movies)
+* [Customized RecyclerView](https://github.com/savepopulation/movies)
 
 
 ### License
