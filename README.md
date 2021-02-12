@@ -5,7 +5,6 @@
 
 <p align="left">Usg Challenge is an application that simply displays and charts cryptocurrency.</p>
 
-<p align="left"><img src="https://github.com/erenpapakci/UsgChallenge/blob/master/art/appGif.gif" alt="Scenic Hiking" width="200"></p>  
 
 ### Architecture
 * [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
